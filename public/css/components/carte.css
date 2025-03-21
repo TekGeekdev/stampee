@@ -1,0 +1,71 @@
+.carte{
+    background-color: var(--gris-50);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+}
+
+.carte .carte-img-avec-favoris{
+    position: relative;
+    background-color: bisque;
+    min-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.carte .carte-timbre-favoris{
+    appearance: none;
+}
+
+.carte img{
+    max-height: 220px;
+}
+ 
+.carte .carte-timbre-favoris:after {
+    content: "";
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    width: 24px;
+    height: 24px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="red" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>');
+}
+
+.carte .txt-enchere-ligne{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 20px;
+}
+.carte .txt-enchere-colonne{
+    display: flex;
+    flex-direction: column;
+}
+
+.carte .entete-enchere div{
+    display: flex;
+}
+
+.carte .carte-zone-txt{
+    padding: var(--rythme-tres-mince);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.carte .carte-zone-txt :is(div+div,div+form,h3+div){
+    margin-top: var(--rythme-mince);
+}
+
+.carte .mise{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--basique-gap);
+}
+
+.carte.is-event{
+    box-shadow: 0px 6px 10px 0px rgba(0,0,0,0.30);
+}

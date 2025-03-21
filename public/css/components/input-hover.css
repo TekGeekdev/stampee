@@ -1,0 +1,16 @@
+.input-hover{
+    background-color: transparent;
+    padding: var(--rythme-petit);
+    border-radius: 3px;
+    transition-property: background-color, color;
+    transition-duration: 300ms;
+    transition-timing-function: linear;
+}
+
+.input-hover:hover{
+    background-color: var(--gris-600);
+    color: white;
+    padding: var(--rythme-petit);
+    border-radius: 3px;
+    transition-duration: 300ms;
+}

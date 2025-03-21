@@ -1,0 +1,6 @@
+.grd-img-petites-img{
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--basique-gap);
+}

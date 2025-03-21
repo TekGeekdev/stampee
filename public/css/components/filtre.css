@@ -1,0 +1,37 @@
+.filtres>form{
+    display: flex;
+    flex-direction: column;
+    gap: var(--rythme-regulier);
+}
+
+.filtres .filtres-vertical{
+    display: flex;
+    flex-direction: column;
+}
+
+.filtres h3+:is(div,label, select){
+    margin-top: var(--rythme-petit);
+}
+
+.filtres section :is(div+div,div+p,p+div,summary+div) {
+    margin-top: var(--rythme-mince);
+}
+
+.filtres {
+    border: solid 2px var(--couleur-tertiaire);
+    padding: var(--rythme-mince);
+    box-shadow: 0px 6px 10px 0px rgba(0,0,0,0.30);
+    background-color: var(--gris-50);
+}
+
+.filtres div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.filtres .select-a-droite {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--basique-gap);
+}

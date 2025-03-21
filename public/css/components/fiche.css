@@ -1,0 +1,7 @@
+@media screen and (max-width:1080px){
+    .fiche .div-et-div-rev-avec-sticky{
+        display: flex;
+        flex-direction: column;
+    }
+}
+

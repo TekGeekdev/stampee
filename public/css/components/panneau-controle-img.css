@@ -1,0 +1,9 @@
+.panneau-controle-img svg{
+    width: 24px;
+}
+
+.panneau-controle-img {
+    display: flex;
+    gap: var(--basique-gap);
+    align-items: center;
+}

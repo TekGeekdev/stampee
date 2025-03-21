@@ -1,0 +1,50 @@
+[id="panneau-confiance"]{
+    margin-inline: auto;
+    max-width: 1200px;
+
+    & h2{
+        text-align: center;
+    }
+
+    & h2+div{
+        margin-top: var(--rythme-regulier-clp);
+    }
+}
+
+[id="panneau-confiance"]>div{
+    display: flex;
+    gap: 30px;
+}
+
+[id="panneau-confiance"] div+div{
+    margin-top: var(--rythme-regulier);
+}
+
+@media screen and (max-width:1100px){
+    [id="panneau-confiance"] div{
+        flex-direction: column;
+
+    }
+    [id="panneau-confiance"] article{
+        text-align: center;
+    }
+}
+
+[id="panneau-confiance"] i+h3{
+    margin-top: var(--rythme-petit);
+}
+
+[id="panneau-confiance"] i{
+    color: var(--couleur-secondaire);
+}
+
+[id="panneau-confiance"] div:last-of-type{
+    justify-content: center;
+    align-items: baseline;
+}
+
+@media screen and (max-width:1100px){
+[id="panneau-confiance"] div:last-of-type>*{
+   margin-inline: auto;
+}
+}

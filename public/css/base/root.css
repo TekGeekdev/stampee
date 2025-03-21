@@ -1,0 +1,59 @@
+:root {
+    /* Échelle typographique */
+    --h1: 2.986rem;
+    --h2: 2.488rem;
+    --h3: 2.074rem;
+    --h4: 1.728rem;
+    --h5: 1.44rem;
+    --p: 1rem;
+    --p-petit: 0.90rem;
+
+    /* Échelle rythmique  base 16px*/
+    --rythme-tres-large: 10rem;
+    /* 160px */
+    --rythme-large: 5rem;
+    /* 80px */
+    --rythme-moyen: 4rem;
+    /* 64 */
+    --rythme-regulier: 2rem;
+    /* 32px */
+    --rythme-petit: 1rem;
+    /* 16px */
+    --rythme-mince: 0.75rem;
+    /* 12px */
+    --rythme-tres-mince: 0.50rem;
+    /* 8px */
+    --rythme-regulier-clp: clamp(1rem, 3vw, 2rem);
+    --rythme-moyen-clp: clamp(2rem, 3vw, 4rem);
+    --rythme-large-clp: clamp(2.5rem, 5vw, 5rem);
+
+    /* autres */
+    --basique-gap: 20px;
+    --special-clp-rechercher: clamp(25ch, 7vw. 60ch);
+    /* Polices */
+    --police-titre: "DM Serif Text", serif;
+    --police-p: "Montserrat", sans-serif;
+
+
+    /* bordure */
+    --bordure-faible: 5px;
+
+    /* Couleur */
+
+    --couleurr-primaire: rgba(35, 48, 64, 1.0);
+    --couleur-secondaire: rgba(44, 100, 133, 1.0);
+    --couleur-tertiaire: rgba(217, 196, 166, 1.0);
+    --coueleur-bg: rgba(248, 250, 251, 1.0);
+
+    /* nuance gris */
+    --gris-800: rgba(43, 48, 53, 1.0);
+    --gris-600: rgba(134, 140, 147, 1.0);
+    --gris-300: rgba(209, 213, 217, 1.0);
+    --gris-100: rgba(241, 243, 244, 1.0);
+    --gris-50: rgba(255, 255, 255, 1.00);
+
+    /* inmportants */
+    --couleur--validation: rgba(77, 171, 115, 1.0);
+    --couleur-annulation: rgba(246, 80, 97, 1.00);
+
+}

@@ -1,0 +1,16 @@
+.enrobage{
+    display: grid;
+    grid-template-columns: subgrid;
+    gap: var(--rythme-large-clp) 20px;
+    position: relative;
+}
+.enrobage>*{
+    grid-column: 2;
+}
+
+.enrobage .remonter-svg{
+    display: block;
+    position: sticky;
+    bottom: 3%;
+    text-align: right;
+}

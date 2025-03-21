@@ -1,0 +1,33 @@
+.bouton{
+  padding: var(--rythme-mince);
+  color: var(--gris-50);
+  background-color: var(--couleur-secondaire);
+  border-radius: var(--bordure-faible);
+  text-decoration: none;
+  border-color: transparent;
+  font-weight: 600;
+  transition-property: background-color, color;
+  transition-duration: 300ms;
+  transition-timing-function: linear;
+}
+.bouton:hover{
+  color: var(--gris-50);
+  background-color: var(--couleurr-primaire);
+  transition-duration: 300ms;
+}
+
+.bouton.as-secondary-btn{
+  border-color: var(--couleur-secondaire);
+  background-color: white;
+  color: var(--couleur-secondaire);
+  transition-property: background-color, color;
+    transition-duration: 300ms;
+    transition-timing-function: linear;
+}
+
+.bouton.as-secondary-btn:hover{
+  transition-duration: 300ms;
+  background-color: var(--couleur-annulation);
+  color: white;
+  border-color: transparent;
+}

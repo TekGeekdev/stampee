@@ -10,7 +10,7 @@ class UserController
 {
     public function create()
     {
-        return View::render(['usercreate']);
+        return View::render('user/create');
     }
 
 }

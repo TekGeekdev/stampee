@@ -1,0 +1,23 @@
+[id="cont-princ-aside-avec-main"]{
+    display: flex;
+    flex-direction: row-reverse;
+    gap: var(--basique-gap);
+    justify-content: flex-end;
+    align-items: baseline;
+    grid-column: 2;
+}
+[id="cont-princ-aside-avec-main"] .galerie{
+    flex-grow: 1;
+}
+[id="cont-princ-aside-avec-main"] .filtres{
+    /* FIXME: faut il utilise autre chose q'un width dans ce cas? */
+        max-width: 40ch;
+}
+
+@media screen and (max-width:1100px){
+    [id="cont-princ-aside-avec-main"]{
+        flex-direction: column;
+        align-items: center;
+        
+    }
+}

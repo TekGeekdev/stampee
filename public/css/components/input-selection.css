@@ -1,0 +1,13 @@
+.input-selection {
+    padding: var(--rythme-mince);
+    border-radius: var(--bordure-faible);
+    border: solid 3px var(--couleur-tertiaire);
+}
+
+.input-selection.grand-champ {
+    padding: var(--rythme-mince);
+}
+
+.input-selection.variante-bleu {
+    border-color: var(--couleur-secondaire);
+}

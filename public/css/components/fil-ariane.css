@@ -1,0 +1,17 @@
+.fil-ariane {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.fil-ariane>div{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.fil-ariane h1{
+    font-family: var(--police-p);
+    display: inline;
+    font-size: var(--p);
+}

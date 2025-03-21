@@ -1,0 +1,20 @@
+body{
+    display: grid;
+    grid-template-columns: 1fr min(calc(100% - 40px), 1500px) 1fr;
+    gap: var(--rythme-large-clp) 20px;
+    background-color: var(--coueleur-bg);
+    position: relative;
+    font-family: var(--police-p);
+    flex-grow: 1;
+}
+
+body>*{
+    grid-column: 1/-1;
+}
+
+body .remonter-svg{
+    display: block;
+    position: sticky;
+    bottom: 3%;
+    text-align: right;
+}

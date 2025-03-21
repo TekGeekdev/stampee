@@ -1,0 +1,8 @@
+.texte-img-float{
+    max-width: 80ch;
+    margin-left: auto;
+}
+
+.texte-img-float img{
+    float: left;
+}

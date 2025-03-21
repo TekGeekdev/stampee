@@ -1,0 +1,34 @@
+.div-et-div-rev-avec-sticky{
+    display: flex;
+    flex-direction: row-reverse;
+    gap: var(--rythme-large);
+    position: relative;
+}
+
+.div-et-div-rev-avec-sticky>div{
+    flex-grow: 1;
+}
+
+.div-et-div-rev-avec-sticky>div:last-child {
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+}
+
+.div-et-div-rev-avec-sticky article+article{
+    margin-top: var(--rythme-petit)
+}
+
+
+.div-et-div{
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--basique-gap);
+}
+.div-et-div.space-between{
+    justify-content: space-between;
+}
+
+.div-et-div.center{
+    align-items: center;
+}
