@@ -27,4 +27,7 @@
 @import url("components/fiche.css");   
 @import url("components/hero.css");   
 @import url("components/texte-img-float.css");   
-@import url("components/form.css");   
+@import url("components/form.css");
+
+/* page */ 
+@import url("pages/error.css");
