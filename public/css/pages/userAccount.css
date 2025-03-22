@@ -1,0 +1,19 @@
+.userAccount{
+    margin-inline: auto;
+}
+.userAccount a{
+    display: block;
+    max-width: max-content;
+}
+
+.userAccount>div{
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+}
+
+.userAccount .userAccount-boite{
+    display: flex;
+    flex-direction: column;
+    gap: var(--basique-gap);
+}

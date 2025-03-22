@@ -1,0 +1,19 @@
+.boite-flex{
+    display: flex;
+}
+
+.boite-flex.is-column{
+    flex-direction: column;
+}
+
+.boite-flex.is-row{
+    flex-direction: row;
+}
+
+.boite-flex.is-space-bet{
+    justify-content: space-between;
+}
+
+.boite-flex.as-gap-base{
+    gap: var(--basique-gap);
+}

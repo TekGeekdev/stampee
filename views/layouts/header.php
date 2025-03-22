@@ -7,6 +7,7 @@
     <meta name="description" content="Enchères, ventes et estimations de timbres">
     <title>{{ tittle }}</title>
     <link rel="stylesheet" href="{{asset}}/css/import.css">
+    <link rel="icon" type="image/x-icon" href="{{asset}}img/favicon.webp">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -53,9 +54,13 @@
                     <option value="français" selected>Français</option>
                     <option value="anglais">Anglais</option>
                 </select>
-                <a class="a-bar-princ" href="#">Messagerie</a>
-                <a class="a-bar-princ" href="#">Enregistrement</a>
-                <a class="a-bar-princ" href="#">Connexion</a>
+                {% if guest %}
+                <a class="a-bar-princ" href="{{base}}/user/create">Enregistrement</a>
+                <a class="a-bar-princ" href="{{base}}/login">Connexion</a>
+                {% else %}
+                <a class="a-bar-princ" href="{{base}}/user/show">Mon compte</a>
+                <a class="a-bar-princ" href="{{base}}/logout">Déconnexion</a>
+                {% endif %}
                 <label for="menu-mobile">
                     <svg width="32px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                         stroke-width="1.5" stroke="white" class="size-6">
