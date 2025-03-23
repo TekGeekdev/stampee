@@ -1,9 +1,11 @@
 .userAccount{
     margin-inline: auto;
 }
+
+
 .userAccount a{
     display: block;
-    max-width: max-content;
+    text-align: center;
 }
 
 .userAccount>div{

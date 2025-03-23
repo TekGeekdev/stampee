@@ -3,8 +3,8 @@
 <main>
     <section class="userAccount"> 
     <h2>Bienvenue {{user.name}}</h2>
-    <div>
-        <div class="userAccount-boite">
+    <div class="boite-flex">
+        <div class="userAccount-boite boite-flex is-column">
             <h3>Mes options</h3>
                 <a href="{{base}}/user/edit" class="bouton">Modifier profil</a>
                 <a href="{{base}}/stamp/create" class="bouton">Créer un timbre</a>
