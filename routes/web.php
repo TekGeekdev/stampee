@@ -5,13 +5,16 @@ use App\Controllers\Article;
 use App\Routes\Route;
 
 
-Route::get('/', 'ArticleController@index');
+Route::get('/', "definir la page d'acceuil");
 
 Route::get('/user/create', 'userController@create');
 Route::post('/user/create', 'userController@store');
 Route::get('/user/show', 'userController@show');
 Route::get('/user/edit', 'userController@edit');
 Route::post('/user/edit', 'userController@update');
+
+Route::get('/stamp/create', 'StampController@create');
+
 
 Route::get('/login', 'AuthController@login');
 Route::post('/login', 'AuthController@store');
