@@ -26,6 +26,8 @@ h2+form{
 }
 
 .form div label+input,
+.form div label+select,
+.form div label+textarea,
 .form input+.span-erreur{
     margin-top: var(--rythme-mince);
 }
@@ -35,7 +37,9 @@ h2+form{
     flex-direction: column;
 }
 
-.form input{
+.form input,
+.form select,
+.form textarea{
     padding: var(--rythme-tres-mince);
     border-radius: var(--bordure-faible);
     border: solid 3px var(--couleur-secondaire);
