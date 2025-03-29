@@ -17,9 +17,9 @@ class UserController
     {
         $validator = new Validator;
 
-        $validator->field('name', $data['name'])->min(5);
-        $validator->field('email', $data['email'])->required()->max(150)->email();
-        $validator->field('password', $data['password'])->min(5)->max(50)->uppercase()->lowercase()->specialChars()->countainNumber();
+        $validator->field('name', $data['name'], "Le champ nom")->min(5);
+        $validator->field('email', $data['email'], "Le champ email")->required()->max(150)->email();
+        $validator->field('password', $data['password'], "Le champ mot de passe")->min(5)->max(50)->uppercase()->lowercase()->specialChars()->countainNumber();
 
         if ($validator->isSuccess()) {
             $user                 = new User;
@@ -77,10 +77,10 @@ class UserController
         if (Auth::session()) {
 
             $validator = new Validator;
-            $validator->field('name', $data['name'])->min(5);
-            $validator->field('email', $data['email'])->required()->max(150)->email();
+            $validator->field('name', $data['name'], "Le champ nom")->min(5);
+            $validator->field('email', $data['email'], "Le champ email")->required()->max(150)->email();
             if (! empty(trim($data["password"]))) {
-                $validator->field('password', $data['password'])->min(5)->max(50)->uppercase()->lowercase()->specialChars()->countainNumber();
+                $validator->field('password', $data['password'], "Le champ mot de passe")->min(5)->max(50)->uppercase()->lowercase()->specialChars()->countainNumber();
             }
 
             if ($validator->isSuccess()) {
