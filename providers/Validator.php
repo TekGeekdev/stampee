@@ -120,8 +120,9 @@ class Validator
             if ($check === false) {
                 $this->errors[$this->key] = "$this->name n'est pas une image!";
             }
+            return $this;
         }
-        return $this;
+
     }
 
     public function fileWeight($file)
@@ -132,8 +133,9 @@ class Validator
             if ($_FILES[$file]["size"] > 200) {
                 $this->errors[$this->key] = "$this->name est trop lourde!";
             }
+            return $this;
         }
-        return $this;
+
     }
 
     public function fileExists($file)
@@ -145,8 +147,9 @@ class Validator
             if (file_exists($target_file)) {
                 $this->errors[$this->key] = "$this->name existe!";
             }
+            return $this;
         }
-        return $this;
+
     }
 
     public function imgFormat($file)
@@ -157,21 +160,24 @@ class Validator
             $target_file   = $target_dir . basename($_FILES[$file]["name"]);
             $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
             if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-                && $imageFileType != "gif") {
+                && $imageFileType != "gif" && $imageFileType != "webp") {
                 $this->errors[$this->key] = "$this->name a un mauvais format!";
             }
+            return $this;
         }
-        return $this;
+
     }
-    public function imgMinSize($file, $witdh=200, $height=200)
+    public function imgMinSize($file, $witdh = 200, $height = 200)
     {
-        $info = getimagesize($_FILES[$file]["tmp_name"]);
-        $imgWidth = $info[0];
-        $imgHeight = $info[1];
-        if($imgWidth < $witdh || $imgHeight < $height){
-            $this->errors[$this->key] = "$this->name a un format trop petit!";
+        if ($_FILES[$file]["error"] != 4) {
+            $info      = getimagesize($_FILES[$file]["tmp_name"]);
+            $imgWidth  = $info[0];
+            $imgHeight = $info[1];
+            if ($imgWidth < $witdh || $imgHeight < $height) {
+                $this->errors[$this->key] = "$this->name a un format trop petit!";
+            }
+            return $this;
         }
-        return $this;
     }
 
     public function unique($model)
@@ -181,10 +187,6 @@ class Validator
         $unique = $model->unique($this->key, $this->value);
         if ($unique) {
             $this->errors[$this->key] = "$this->name doit être unique.";
-            if(array_key_exists($this->key,$this->errors)==false){
-                $this->errors[$this->key] = [];
-            }
-            array_push($this->errors[$this->key],"sdfgsdfgfd");
         }
         return $this;
     }
