@@ -13,6 +13,9 @@ body>*{
 }
 
 body .remonter-svg{
+    grid-column: 2;
+    
+    max-width: max-content;
     display: block;
     position: sticky;
     bottom: 3%;

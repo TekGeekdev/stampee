@@ -4,6 +4,7 @@ namespace App\Controllers;
 use App\Models\Color;
 use App\Models\Conditions;
 use App\Models\CountryOrigin;
+use App\Models\FileToUpload;
 use App\Models\Stamp;
 use App\Providers\Auth;
 use App\Providers\Validator;
@@ -61,9 +62,11 @@ class StampController
             $data["user_id"] = $_SESSION['user_id'];
             $stamp           = new Stamp;
             $insertStamp     = $stamp->insert($data);
+            
 
             if ($insertStamp) {
-                return view::redirect('stamp/create-img?id=' . $insertStamp);
+                $_SESSION['stampId'] = $insertStamp;
+                return view::redirect('stamp/create-img');
             } else {
                 return View::render('error', ['msg' => 'Impossible d\'envoyer l\'article']);
             }
@@ -81,80 +84,78 @@ class StampController
 
     public function store_stamp_img($data = [])
     {
-
+        var_dump($_SESSION['stampId']);
         $validator = new Validator;
 
-        // echo('<pre>');
-        // print_r($data);
-        // echo('</pre>');
-        // echo('<pre>');
-        // print_r($_FILES);
-        // echo('</pre>');
+        $validator->field('file', $_FILES["file"], "L'image")->fileUploaded("file")->imgMinSize("file", 300, 200)->imgFormat("file")->fileExists("file");
+        $validator->field('description', $data['description'], "Le champ description")->required()->min(5)->max(60);
 
-        // $validator->field('file', $_FILES["file"], "L'image")->fileUploaded("file")->imgMinSize("file", 300, 200);
-        // ->imgFormat("file")->fileExists("file");
-        // $validator->field('description', $data['description'], "Le champ description")->required()->min(5)->max(60);
+        if ($_FILES["secondFile"]["error"] === 0) {
+            $validator->field('secondFile', $_FILES["secondFile"], "L'image")->imgMinSize("secondFile", 2500, 2500)->imgFormat("secondFile")->fileExists("secondFile");
 
-        // if ($_FILES["secondFile"]["error"] === 0) {
-        //     $validator->field('secondFile', $_FILES["secondFile"], "L'image")->imgMinSize("secondFile", 2500, 2500)->imgFormat("secondFile")->fileExists("secondFile");
+            $validator->field('secondDescription', $data['secondDescription'], "Le champ description")->required()->min(5)->max(60);
+        }
 
-        //     $validator->field('secondDescription', $data['secondDescription'], "Le champ description")->required()->min(5)->max(60);
-        // }
+        if ($_FILES["thirdFile"]["error"] === 0) {
+            $validator->field('thirdFile', $_FILES["thirdFile"], "L'image")->imgMinSize("thirdFile", 500, 500)->imgFormat("thirdFile")->fileExists("thirdFile");
 
-        // if ($_FILES["thirdFile"]["error"] === 0) {
-        //     $validator->field('thirdFile', $_FILES["thirdFile"], "L'image")->imgMinSize("thirdFile", 500, 500)->imgFormat("thirdFile")->fileExists("thirdFile");
+            $validator->field('thirdDescription', $data['thirdDescription'], "Le champ description")->required()->min(5)->max(60);
+        }
 
-        //     $validator->field('thirdDescription', $data['thirdDescription'], "Le champ description")->required()->min(5)->max(60);
-        // }
-
-        // if ($validator->isSuccess()) {
-        //     echo("validator success");
-        $get = ! empty($get) ? $get : $_GET;
-        $idStampUser = $get["id"];
-        $position = 0;
-
-        var_dump($get);
         
-        foreach ($data as $oneData) {
+        $idStampUser = $_SESSION['stampId'];
 
-            if ($oneData != null) {
-                $oneDataInsert                = [];
-                $oneDataInsert["position"]    = $position;
-                $oneDataInsert["description"] = $oneData;
-                $oneDataInsert["stamp_id"]    = $idStampUser;
-                $oneDataInsert["file"]        = "";
+        if ($validator->isSuccess()) {
+            echo("validator success");
 
-                foreach ($_FILES as $oneFile => $fileInfo) {
+            $position = 0;
 
-                    if ($fileInfo["error"] === 0) {
-                        $folderUpload = __DIR__ . '/../public/uploads/';
-                        $target_file  = $folderUpload . basename($fileInfo["name"]);
-                        if (move_uploaded_file($fileInfo['tmp_name'], $target_file)) {
-                            $oneDataInsert["file"] = basename($fileInfo["name"]);
+            $allDataInsert = false;
+
+            foreach ($data as $oneData) {
+
+                if ($oneData != null) {
+                    $oneDataInsert                = [];
+                    $oneDataInsert["position"]    = $position;
+                    $oneDataInsert["description"] = $oneData;
+                    $oneDataInsert["stamp_id"]    = $idStampUser;
+                    $oneDataInsert["file"]        = "";
+
+                    foreach ($_FILES as $oneFile => $fileInfo) {
+
+                        if ($fileInfo["error"] === 0) {
+                            $folderUpload = __DIR__ . '/../public/uploads/';
+                            $target_file  = $folderUpload . basename($fileInfo["name"]);
+                            if (move_uploaded_file($fileInfo['tmp_name'], $target_file)) {
+                                $oneDataInsert["file"] = basename($fileInfo["name"]);
+                            }
                         }
-
                     }
-            
-                }
 
-                echo('<pre>');
-                var_dump($oneDataInsert);
-                echo('</pre>');
-                $position++;
+                    $FileToUpload = new FileToUpload;
+                    $insertData   = $FileToUpload->insert($oneDataInsert);
+
+                    if ($insertData) {
+                        $allDataInsert = true;
+                    } else {
+                        $allDataInsert = false;
+                    }
+
+                    $position++;
+                }
+            }
+            // var_dump($allDataInsert);
+
+            if ($allDataInsert) {
+                $_SESSION['stampId']= null;
+                return View::redirect('user/show');
+            } else {
+                return View::render('error', ['msg' => 'Impossible d\'envoyer les images']);
             }
 
-            // } else {
-            //     $errors = $validator->getErrors();
-            //     return View::render('stamp/create-img', ['errors' => $errors]);
-            // }
-            // return View::render('stamp/create-img');
-            // boucle{
-            // $folderUpload = __DIR__ . '/../public/uploads/';
-            // $target_file  = $folderUpload . basename($_FILES["image"]["name"]);
-
-            // $data['image'] = basename($_FILES['image']['name']);
-            // move_uploaded_file($_FILES['image']['tmp_name'], $target_file);
-            // ["name"]
+        } else {
+            $errors = $validator->getErrors();
+            return View::render('stamp/create-img', ['errors' => $errors, 'description' => $data]);
         }
     }
 }

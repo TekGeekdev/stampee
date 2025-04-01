@@ -14,7 +14,7 @@
             <div>
                 <label for="description">Description de l'image principale</label>
                 <input type="text" name="description" id="description"
-                placeholder="Saissisez une description" value="{{stamp.name}}">
+                placeholder="Saissisez une description" value="{{description.description}}">
                 {% if errors.description is defined %}
                 <span class="span-erreur"> {{errors.description}}</span>
                 {% endif %}
@@ -29,7 +29,7 @@
             <div>
                 <label for="secondDescription">Description de la seconde image</label>
                 <input type="text" name="secondDescription" id="secondDescription"
-                placeholder="Saissisez une description" value="{{stamp.name}}">
+                placeholder="Saissisez une description" value="{{description.secondDescription}}">
                 {% if errors.secondDescription is defined %}
                 <span class="span-erreur"> {{errors.secondDescription}}</span>
                 {% endif %}
@@ -44,7 +44,7 @@
             <div>
                 <label for="thirdDescription">Description de la troisième image</label>
                 <input type="text" name="thirdDescription" id="thirdDescription"
-                placeholder="Saissisez une description" value="{{stamp.name}}">
+                placeholder="Saissisez une description" value="{{description.thirdDescription}}">
                 {% if errors.thirdDescription is defined %}
                 <span class="span-erreur"> {{errors.thirdDescription}}</span>
                 {% endif %}

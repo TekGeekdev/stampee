@@ -120,9 +120,9 @@ class Validator
             if ($check === false) {
                 $this->errors[$this->key] = "$this->name n'est pas une image!";
             }
-            return $this;
+            
         }
-
+        return $this;
     }
 
     public function fileWeight($file)
@@ -133,9 +133,9 @@ class Validator
             if ($_FILES[$file]["size"] > 200) {
                 $this->errors[$this->key] = "$this->name est trop lourde!";
             }
-            return $this;
+            
         }
-
+        return $this;
     }
 
     public function fileExists($file)
@@ -147,9 +147,9 @@ class Validator
             if (file_exists($target_file)) {
                 $this->errors[$this->key] = "$this->name existe!";
             }
-            return $this;
+            
         }
-
+        return $this;
     }
 
     public function imgFormat($file)
@@ -163,9 +163,9 @@ class Validator
                 && $imageFileType != "gif" && $imageFileType != "webp") {
                 $this->errors[$this->key] = "$this->name a un mauvais format!";
             }
-            return $this;
+            
         }
-
+        return $this;
     }
     public function imgMinSize($file, $witdh = 200, $height = 200)
     {
@@ -176,8 +176,9 @@ class Validator
             if ($imgWidth < $witdh || $imgHeight < $height) {
                 $this->errors[$this->key] = "$this->name a un format trop petit!";
             }
-            return $this;
+            
         }
+        return $this;
     }
 
     public function unique($model)
