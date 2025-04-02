@@ -84,7 +84,6 @@ class StampController
 
     public function store_stamp_img($data = [])
     {
-        var_dump($_SESSION['stampId']);
         $validator = new Validator;
 
         $validator->field('file', $_FILES["file"], "L'image")->fileUploaded("file")->imgMinSize("file", 300, 200)->imgFormat("file")->fileExists("file");
@@ -105,7 +104,6 @@ class StampController
         $idStampUser = $_SESSION['stampId'];
 
         if ($validator->isSuccess()) {
-            echo("validator success");
 
             $position = 0;
 
@@ -143,7 +141,6 @@ class StampController
                     $position++;
                 }
             }
-            // var_dump($allDataInsert);
 
             if ($allDataInsert) {
                 $_SESSION['stampId'] = null;
@@ -177,12 +174,11 @@ class StampController
             $countryName = $country->selectId($oneStamp["countryOrigin_id"]);
             $selectAllStamp[$key]["countryOrigin_id"]= $countryName["country"];
 
-            
         }
 
         echo('<pre>'); 
-            print_r($selectAllStamp);
-            echo('</pre>');
+        print_r($selectAllStamp);
+        echo('</pre>');
         return View::render('stamp/index', ['AllStamp' => $selectAllStamp]);
 
     }

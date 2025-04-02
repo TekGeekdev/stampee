@@ -113,7 +113,7 @@ class Validator
     // https://www.w3schools.com/php/php_file_upload.asp
     public function imgFake($file = null)
     {
-        if ($_FILES[$file]["error"] != 4) {
+        if ($_FILES[$file]["error"] == 0) {
 
             // Check if image file is a actual image or fake image
             $check = getimagesize($_FILES[$file]["tmp_name"]);
@@ -127,7 +127,7 @@ class Validator
 
     public function fileWeight($file)
     {
-        if ($_FILES[$file]["error"] != 4) {
+        if ($_FILES[$file]["error"] == 0) {
 
             // Check image size
             if ($_FILES[$file]["size"] > 200) {
@@ -140,7 +140,7 @@ class Validator
 
     public function fileExists($file)
     {
-        if ($_FILES[$file]["error"] != 4) {
+        if ($_FILES[$file]["error"] == 0) {
 
             $target_dir  = __DIR__ . "/../public/uploads/";
             $target_file = $target_dir . basename($_FILES[$file]["name"]);
@@ -154,13 +154,13 @@ class Validator
 
     public function imgFormat($file)
     {
-        if ($_FILES[$file]["error"] != 4) {
+        if ($_FILES[$file]["error"] == 0) {
 
             $target_dir    = __DIR__ . "/../public/uploads/";
             $target_file   = $target_dir . basename($_FILES[$file]["name"]);
             $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
             if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-                && $imageFileType != "gif" && $imageFileType != "webp") {
+                && $imageFileType != "webp") {
                 $this->errors[$this->key] = "$this->name a un mauvais format!";
             }
             
@@ -169,7 +169,7 @@ class Validator
     }
     public function imgMinSize($file, $witdh = 200, $height = 200)
     {
-        if ($_FILES[$file]["error"] != 4) {
+        if ($_FILES[$file]["error"] == 0) {
             $info      = getimagesize($_FILES[$file]["tmp_name"]);
             $imgWidth  = $info[0];
             $imgHeight = $info[1];
