@@ -1,10 +1,52 @@
-{{ include('layouts/header.twig', {title:'Création timbre'})}}
+{{ include('layouts/header.twig', {title:'Mes timbres'})}}
 <main>
 	<section>
 		<h2>Mes timbres</h2>
-		<div class="grille-cartes">
+		<article>
+			<table class="table ombre-permanent">
+				<thead>
+					<tr>
+						<th>Nom</th>
+						<th>Date émission</th>
+						<th>Tirage</th>
+						<th>Largeur (cm)</th>
+						<th>Longueur (cm)</th>
+						<th>Certifier</th>
+						<th>Couleur</th>
+						<th>Pays origine</th>
 
-		</div>
+						<th>Condition</th>
+						<th>Modifier</th>
+						<th>Supprimer</th>
+						
+					</tr>
+				</thead>
+				<tbody>
+					{% for stamp in AllStamp %}
+						<tr>
+							<td>{{stamp.name}}</td>
+							<td>{{stamp.dateRelease}}</td>
+							<td>{{stamp.draw}}</td>
+							<td>{{stamp.width}}</td>
+							<td>{{stamp.height}}</td>
+							<td>{{stamp.certified}}</td>
+							<td>{{stamp.color_id}}</td>
+							<td>{{stamp.countryOrigin_id}}</td>
+							<td>{{stamp.conditions_id}}</td>
+							<td>
+								<a href="{{base}}/article/edit?id={{stamp.id}}">Éditer</a>
+							</td>
+							<td>
+								<form action="" method="post" class="form-delete">
+									<input type="hidden" name="id" value="{{stamp.id}}">
+									<input type="submit" class="bouton block danger" value="Supression">
+								</form>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</article>
 	</section>
 </main>
 

@@ -9,6 +9,7 @@ use App\Models\Stamp;
 use App\Providers\Auth;
 use App\Providers\Validator;
 use App\Providers\View;
+use App\Providers\Date;
 
 class StampController
 {
@@ -160,18 +161,29 @@ class StampController
     public function index()
     {
         $stamp          = new Stamp;
-        $FileToUpload = new FileToUpload;
+        $color        = new Color;
+        $conditions       = new Conditions;
+        $country       = new CountryOrigin;
 
         $selectAllStamp = $stamp->selectAllById($_SESSION['user_id'], "user_id", "id");
-        echo('<pre>');
-        print_r($selectAllStamp);
-        echo('</pre>');
-        die();
-        foreach ($selectAllStamp as $key => $oneStamp) {
 
+        foreach ($selectAllStamp as $key => $oneStamp) {
+            $colorName = $color->selectId($oneStamp["color_id"]);
+            $selectAllStamp[$key]["color_id"]= $colorName["color"];
+            
+            $conditionsName = $conditions->selectId($oneStamp["conditions_id"]);
+            $selectAllStamp[$key]["conditions_id"]= $conditionsName["state"];
+
+            $countryName = $country->selectId($oneStamp["countryOrigin_id"]);
+            $selectAllStamp[$key]["countryOrigin_id"]= $countryName["country"];
+
+            
         }
 
-        return View::render('stamp/index');
+        echo('<pre>'); 
+            print_r($selectAllStamp);
+            echo('</pre>');
+        return View::render('stamp/index', ['AllStamp' => $selectAllStamp]);
 
     }
 }

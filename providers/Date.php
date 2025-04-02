@@ -2,10 +2,9 @@
 namespace App\Providers;
 
 class Date{
-    public function date(){
-        $objDateNow = date_create('now');
-        $datePublication = $objDateNow->format("Y-m-d");
-        return $datePublication; 
+    public function date($date){
+        $dateFormated = $date->format("Y-m-d");
+        return $dateFormated; 
     }
 
 }

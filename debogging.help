@@ -2,3 +2,12 @@ echo('<pre>');
 print_r($data);
 echo('</pre>');
 die();
+
+
+math@admin.com
+123Abc@
+
+
+public function index
+$dateFormated = $dateFormat->date($oneStamp["dateRelease"]);
+$selectAllStamp[$key]["dateRelease"]= $dateFormated;

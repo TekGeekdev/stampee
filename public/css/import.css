@@ -29,6 +29,7 @@
 @import url("components/texte-img-float.css");   
 @import url("components/form.css");
 @import url("components/boite-flex.css");
+@import url("components/table.css");
 
 /* page */ 
 @import url("pages/error.css");
