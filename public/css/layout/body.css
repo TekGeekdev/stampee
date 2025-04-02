@@ -13,11 +13,11 @@ body>*{
 }
 
 body .remonter-svg{
-    grid-column: 2;
     
+    right: 3%;
     max-width: max-content;
     display: block;
-    position: sticky;
+    position: fixed;
     bottom: 3%;
     text-align: right;
 }

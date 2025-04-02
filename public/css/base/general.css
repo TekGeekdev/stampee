@@ -29,6 +29,12 @@ p{
     line-height: 1.5;
 }
 
+main{
+    position: relative;
+    display: grid;
+    grid-template-columns: subgrid;
+}
+
 main>div+section{
     margin-top: var(--rythme-moyen-clp);
 }
@@ -48,10 +54,7 @@ main section>h2+*{
     margin-top: var(--rythme-petit);
 }
 
-main{
-    display: grid;
-    grid-template-columns: subgrid;
-}
+
 main>*{
     grid-column: 2;
 }

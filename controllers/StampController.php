@@ -62,7 +62,6 @@ class StampController
             $data["user_id"] = $_SESSION['user_id'];
             $stamp           = new Stamp;
             $insertStamp     = $stamp->insert($data);
-            
 
             if ($insertStamp) {
                 $_SESSION['stampId'] = $insertStamp;
@@ -91,18 +90,17 @@ class StampController
         $validator->field('description', $data['description'], "Le champ description")->required()->min(5)->max(60);
 
         if ($_FILES["secondFile"]["error"] === 0) {
-            $validator->field('secondFile', $_FILES["secondFile"], "L'image")->imgMinSize("secondFile", 2500, 2500)->imgFormat("secondFile")->fileExists("secondFile");
+            $validator->field('secondFile', $_FILES["secondFile"], "L'image")->imgMinSize("secondFile", 300, 200)->imgFormat("secondFile")->fileExists("secondFile");
 
             $validator->field('secondDescription', $data['secondDescription'], "Le champ description")->required()->min(5)->max(60);
         }
 
         if ($_FILES["thirdFile"]["error"] === 0) {
-            $validator->field('thirdFile', $_FILES["thirdFile"], "L'image")->imgMinSize("thirdFile", 500, 500)->imgFormat("thirdFile")->fileExists("thirdFile");
+            $validator->field('thirdFile', $_FILES["thirdFile"], "L'image")->imgMinSize("thirdFile", 300, 200)->imgFormat("thirdFile")->fileExists("thirdFile");
 
             $validator->field('thirdDescription', $data['thirdDescription'], "Le champ description")->required()->min(5)->max(60);
         }
 
-        
         $idStampUser = $_SESSION['stampId'];
 
         if ($validator->isSuccess()) {
@@ -147,7 +145,7 @@ class StampController
             // var_dump($allDataInsert);
 
             if ($allDataInsert) {
-                $_SESSION['stampId']= null;
+                $_SESSION['stampId'] = null;
                 return View::redirect('user/show');
             } else {
                 return View::render('error', ['msg' => 'Impossible d\'envoyer les images']);
@@ -157,5 +155,23 @@ class StampController
             $errors = $validator->getErrors();
             return View::render('stamp/create-img', ['errors' => $errors, 'description' => $data]);
         }
+    }
+
+    public function index()
+    {
+        $stamp          = new Stamp;
+        $FileToUpload = new FileToUpload;
+
+        $selectAllStamp = $stamp->selectAllById($_SESSION['user_id'], "user_id", "id");
+        echo('<pre>');
+        print_r($selectAllStamp);
+        echo('</pre>');
+        die();
+        foreach ($selectAllStamp as $key => $oneStamp) {
+
+        }
+
+        return View::render('stamp/index');
+
     }
 }

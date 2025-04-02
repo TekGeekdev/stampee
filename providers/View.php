@@ -6,7 +6,7 @@ use Twig\Loader\FilesystemLoader;
 
 class View
 {
-    public static function render($template, $data = [])
+    public static function render($template ,$data = [])
     {
         $loader = new FilesystemLoader('views');
         $twig   = new Environment($loader);
@@ -20,7 +20,7 @@ class View
             $guest = true;
         }
         $twig->addGlobal('guest', $guest);
-        echo $twig->render($template . ".php", $data);
+        echo $twig->render($template . ".twig", $data);
     }
 
     public static function redirect($url)

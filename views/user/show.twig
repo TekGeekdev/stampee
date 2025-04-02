@@ -1,7 +1,7 @@
-{{ include('layouts/header.php', {title:'Compte utilisateur'})}}
+{{ include('layouts/header.twig', {title:'Compte utilisateur'})}}
 
 <main>
-    <section class="userAccount"> 
+    <section class="userAccount">
     <h2>Bienvenue {{user.name}}</h2>
     <div class="boite-flex">
         <div class="userAccount-boite boite-flex is-column">
@@ -26,5 +26,4 @@
     </section>
 </main>
 
-{{ include('layouts/footer.php')}}
-
+{{ include('layouts/footer.twig')}}

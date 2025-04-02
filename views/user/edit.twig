@@ -1,7 +1,7 @@
-{{ include('layouts/header.php', {title:'Création compte'})}}
+{{ include('layouts/header.twig', {title:'Modifier compte'})}}
 <main>
 <section class="form ombre-permanent">
-        <h2>Créer un compte</h2>
+        <h2>Modifier un compte</h2>
         <form method="post">
             <div>
                 <label for="name">Nom</label>
@@ -27,10 +27,10 @@
                     <span class="span-erreur"> {{errors.password}}</span>
                 {% endif %}
             </div>
-            <input type="submit" value="Créer le compte" class="bouton">
+            <input type="submit" value="Modifier le compte" class="bouton">
         </form>
     </section>
 </main>
 
 
-{{ include('layouts/footer.php')}}
+{{ include('layouts/footer.twig')}}
