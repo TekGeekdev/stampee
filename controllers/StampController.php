@@ -175,11 +175,37 @@ class StampController
             $selectAllStamp[$key]["countryOrigin_id"]= $countryName["country"];
 
         }
-
         echo('<pre>'); 
         print_r($selectAllStamp);
         echo('</pre>');
         return View::render('stamp/index', ['AllStamp' => $selectAllStamp]);
+    }
 
+    public function edit(){
+        $get = ! empty($get) ? $get : $_GET;
+        var_dump($get);
+        $idStamp = $get["id"];
+
+        $color        = new Color;
+        $selectColors = $color->select();
+
+        $conditions       = new Conditions;
+        $selectConditions = $conditions->select();
+
+        $country       = new CountryOrigin;
+        $selectCountry = $country->select();
+
+        $stamp = new Stamp;
+        $selectStamp = $stamp->selectID($idStamp);
+
+        // echo('<pre>');
+        // print_r($selectStamp);
+        // echo('</pre>');
+        if($_SESSION["user_id"] == $selectStamp["user_id"]){
+            return View::render('stamp/create', ['colors' => $selectColors,'stamp' => $selectStamp, 'conditions' => $selectConditions, 'countries' => $selectCountry]);
+        }else {
+            return View::render('error', ['msg' => "Vous n'avez accès à cette zone"]);
+        }
+        
     }
 }
