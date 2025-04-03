@@ -5,7 +5,7 @@ use App\Controllers\Article;
 use App\Routes\Route;
 
 
-Route::get('/', "definir la page d'acceuil");
+Route::get('/', "AuctionController@home");
 
 Route::get('/user/create', 'userController@create');
 Route::post('/user/create', 'userController@store');
@@ -22,7 +22,7 @@ Route::get('/stamp/edit', 'StampController@edit');
 Route::post('/stamp/edit', 'StampController@update');
 Route::post('/stamp/delete', 'StampController@delete');
 
-Route::get('/auction/edit', 'AuctionController@index');
+Route::get('/auction', 'AuctionController@index');
 
 Route::get('/login', 'AuthController@login');
 Route::post('/login', 'AuthController@store');

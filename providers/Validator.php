@@ -130,7 +130,7 @@ class Validator
         if ($_FILES[$file]["error"] == 0) {
 
             // Check image size
-            if ($_FILES[$file]["size"] > 200) {
+            if ($_FILES[$file]["size"] > 1900000) {
                 $this->errors[$this->key] = "$this->name est trop lourde!";
             }
             

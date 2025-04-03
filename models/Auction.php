@@ -9,3 +9,4 @@ class Auction extends CRUD
     protected $primaryKey = 'id';
     protected $fillable   = ['name', 'dateStart', 'dateFinish', 'startPrice', 'lordLike', 'state_id', 'stamp_id'];
 }
+

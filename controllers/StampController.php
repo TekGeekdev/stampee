@@ -15,7 +15,6 @@ class StampController
 
     public function __construct()
     {
-        // Logs::history();
         Auth::session();
     }
 
@@ -82,7 +81,6 @@ class StampController
 
     public function store_stamp_img($data = [])
     {
-
         $validator = new Validator;
 
         $validator->field('file', $_FILES["file"], "L'image")->fileUploaded("file")->imgMinSize("file", 300, 200)->imgFormat("file")->fileExists("file");

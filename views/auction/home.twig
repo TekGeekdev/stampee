@@ -1,0 +1,326 @@
+{{ include('layouts/header.twig', {title:'Mes timbres'})}}
+
+ <main>
+            <header class="hero">
+                <img src="{{asset}}img/hero-acceuil.webp" alt="image salle enchère">
+                <div>
+                    <h1>Bienvenue sur Stampee</h1>
+                    <p>Plateforme d'enchère de timbres</p>
+                    <p>Venez miser et enrichir votre collection</p>
+                </div>
+            </header>
+            <section>
+                <h2>Nos dernières enchères</h2>
+                <div class="grille-cartes">
+                    <article class="carte zoomEffet ombre-boite">
+                        <div class="carte-img-avec-favoris">
+                            <img class="carte-timbre-image" src="{{asset}}/img/timbre-24cents.webp" alt="image d'un timbre">
+                            <input class="carte-timbre-favoris" type="checkbox" name="favoris"
+                                aria-label="icone pour mettre une enchère en favoris">
+                        </div>
+                        <div class="carte-zone-txt">
+                            <div class="entete-enchere">
+                                <h3 class="timbre-titre">Timbre de 24 cents</h3>
+                                <div class="txt-enchere-colonne">
+                                    <div class="txt-enchere-ligne">
+                                        <p class="timbre-etat">État :</p>
+                                        <p>Neuf</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="txt-enchere-colonne">
+                                <div class="txt-enchere-ligne">
+                                    <p class="timbre-prix"><b>Mise actuelle :</b></p>
+                                    <p><b>650 $</b></p>
+                                </div>
+                                <div class="txt-enchere-ligne">
+                                    <p class="timbre-temps-restant"><b>Temps restant :</b></p>
+                                    <p class="texte-vert"><b>3 jours 21 heures</b></p>
+                                </div>
+                            </div>
+                            <form action="index.html" class="mise">
+                                <input type="number" name="prix" class="input-selection variante-bleu"
+                                    placeholder="Entrez une mise" aria-label="Entrez une mise pour l'action">
+                                <input type="submit" value="Miser" class="bouton">
+                            </form>
+                        </div>
+                    </article>
+                    <article class="carte zoomEffet ombre-boite">
+                        <div class="carte-img-avec-favoris">
+                            <img class="carte-timbre-image" src="{{asset}}/img/timbre-30cents.webp" alt="image d'un timbre">
+                            <input class="carte-timbre-favoris" type="checkbox" name="favoris"
+                                aria-label="icone pour mettre une enchère en favoris">
+                        </div>
+                        <div class="carte-zone-txt">
+                            <div class="entete-enchere">
+                                <h3 class="timbre-titre">Timbre de 30 cents</h3>
+                                <div class="txt-enchere-colonne">
+                                    <div class="txt-enchere-ligne">
+                                        <p class="timbre-etat">État :</p>
+                                        <p>Neuf</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="txt-enchere-colonne">
+                                <div class="txt-enchere-ligne">
+                                    <p class="timbre-prix"><b>Mise actuelle :</b></p>
+                                    <p><b>650 $</b></p>
+                                </div>
+                                <div class="txt-enchere-ligne">
+                                    <p class="timbre-temps-restant"><b>Temps restant :</b></p>
+                                    <p class="texte-vert"><b>15 jours 19 heures</b></p>
+                                </div>
+                            </div>
+                            <form action="index.html" class="mise">
+                                <input type="number" name="prix" class="input-selection variante-bleu"
+                                    placeholder="Entrez une mise" aria-label="Entrez une mise pour l'action">
+                                <input type="submit" value="Miser" class="bouton">
+                            </form>
+                        </div>
+                    </article>
+                    <article class="carte zoomEffet ombre-boite">
+                        <div class="carte-img-avec-favoris">
+                            <img class="carte-timbre-image" src="{{asset}}/img/timbre-great-britain-penny-black.webp" alt="image d'un timbre">
+                            <input class="carte-timbre-favoris" type="checkbox" name="favoris"
+                                aria-label="icone pour mettre une enchère en favoris">
+                        </div>
+                        <div class="carte-zone-txt">
+                            <div class="entete-enchere">
+                                <h3 class="timbre-titre">Great Britain Penny Black</h3>
+                                <div class="txt-enchere-colonne">
+                                    <div class="txt-enchere-ligne">
+                                        <p class="timbre-etat">État :</p>
+                                        <p>Neuf</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="txt-enchere-colonne">
+                                <div class="txt-enchere-ligne">
+                                    <p class="timbre-prix"><b>Mise actuelle :</b></p>
+                                    <p><b>650 $</b></p>
+                                </div>
+                                <div class="txt-enchere-ligne">
+                                    <p class="timbre-temps-restant"><b>Temps restant :</b></p>
+                                    <p class="texte-rouge"><b>17 heures</b></p>
+                                </div>
+                            </div>
+                            <form action="index.html" class="mise">
+                                <input type="number" name="prix" class="input-selection variante-bleu"
+                                    placeholder="Entrez une mise" aria-label="Entrez une mise pour l'action">
+                                <input type="submit" value="Miser" class="bouton">
+                            </form>
+                        </div>
+                    </article>
+                    <article class="carte zoomEffet ombre-boite">
+                        <div class="carte-img-avec-favoris">
+                            <img class="carte-timbre-image" src="{{asset}}/img/timbre-first-car-post.webp" alt="image d'un timbre">
+                            <input class="carte-timbre-favoris" type="checkbox" name="favoris"
+                                aria-label="icone pour mettre une enchère en favoris">
+                        </div>
+                        <div class="carte-zone-txt">
+                            <div class="entete-enchere">
+                                <h3 class="timbre-titre">First car canada post</h3>
+                                <div class="txt-enchere-colonne">
+                                    <div class="txt-enchere-ligne">
+                                        <p class="timbre-etat">État :</p>
+                                        <p>Neuf</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="txt-enchere-colonne">
+                                <div class="txt-enchere-ligne">
+                                    <p class="timbre-prix"><b>Mise actuelle :</b></p>
+                                    <p><b>650 $</b></p>
+                                </div>
+                                <div class="txt-enchere-ligne">
+                                    <p class="timbre-temps-restant"><b>Temps restant :</b></p>
+                                    <p class="texte-vert"><b>2 jours 15 heures</b></p>
+                                </div>
+                            </div>
+                            <form action="index.html" class="mise">
+                                <input type="number" name="prix" class="input-selection variante-bleu"
+                                    placeholder="Entrez une mise" aria-label="Entrez une mise pour l'action">
+                                <input type="submit" value="Miser" class="bouton">
+                            </form>
+                        </div>
+                    </article>
+                    <article class="carte zoomEffet ombre-boite">
+                        <div class="carte-img-avec-favoris">
+                            <img class="carte-timbre-image" src="{{asset}}/img/timbre-30cents.webp" alt="image d'un timbre">
+                            <input class="carte-timbre-favoris" type="checkbox" name="favoris"
+                                aria-label="icone pour mettre une enchère en favoris">
+                        </div>
+                        <div class="carte-zone-txt">
+                            <div class="entete-enchere">
+                                <h3 class="timbre-titre">Timbre de 30 cents</h3>
+                                <div class="txt-enchere-colonne">
+                                    <div class="txt-enchere-ligne">
+                                        <p class="timbre-etat">État :</p>
+                                        <p>Neuf</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="txt-enchere-colonne">
+                                <div class="txt-enchere-ligne">
+                                    <p class="timbre-prix"><b>Mise actuelle :</b></p>
+                                    <p><b>650 $</b></p>
+                                </div>
+                                <div class="txt-enchere-ligne">
+                                    <p class="timbre-temps-restant"><b>Temps restant :</b></p>
+                                    <p class="texte-vert"><b>15 jours 19 heures</b></p>
+                                </div>
+                            </div>
+                            <form action="index.html" class="mise">
+                                <input type="number" name="prix" class="input-selection variante-bleu"
+                                    placeholder="Entrez une mise" aria-label="Entrez une mise pour l'action">
+                                <input type="submit" value="Miser" class="bouton">
+                            </form>
+                        </div>
+                    </article>
+                    <article class="carte zoomEffet ombre-boite">
+                        <div class="carte-img-avec-favoris">
+                            <img class="carte-timbre-image" src="{{asset}}/img/timbre-great-britain-penny-black.webp" alt="image d'un timbre">
+                            <input class="carte-timbre-favoris" type="checkbox" name="favoris"
+                                aria-label="icone pour mettre une enchère en favoris">
+                        </div>
+                        <div class="carte-zone-txt">
+                            <div class="entete-enchere">
+                                <h3 class="timbre-titre">Great Britain Penny Black</h3>
+                                <div class="txt-enchere-colonne">
+                                    <div class="txt-enchere-ligne">
+                                        <p class="timbre-etat">État :</p>
+                                        <p>Neuf</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="txt-enchere-colonne">
+                                <div class="txt-enchere-ligne">
+                                    <p class="timbre-prix"><b>Mise actuelle :</b></p>
+                                    <p><b>650 $</b></p>
+                                </div>
+                                <div class="txt-enchere-ligne">
+                                    <p class="timbre-temps-restant"><b>Temps restant :</b></p>
+                                    <p class="texte-rouge"><b>17 heures</b></p>
+                                </div>
+                            </div>
+                            <form action="index.html" class="mise">
+                                <input type="number" name="prix" class="input-selection variante-bleu"
+                                    placeholder="Entrez une mise" aria-label="Entrez une mise pour l'action">
+                                <input type="submit" value="Miser" class="bouton">
+                            </form>
+                        </div>
+                    </article>
+                    <article class="carte zoomEffet ombre-boite">
+                        <div class="carte-img-avec-favoris">
+                            <img class="carte-timbre-image" src="{{asset}}/img/timbre-first-car-post.webp" alt="image d'un timbre">
+                            <input class="carte-timbre-favoris" type="checkbox" name="favoris"
+                                aria-label="icone pour mettre une enchère en favoris">
+                        </div>
+                        <div class="carte-zone-txt">
+                            <div class="entete-enchere">
+                                <h3 class="timbre-titre">First car canada post</h3>
+                                <div class="txt-enchere-colonne">
+                                    <div class="txt-enchere-ligne">
+                                        <p class="timbre-etat">État :</p>
+                                        <p>Neuf</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="txt-enchere-colonne">
+                                <div class="txt-enchere-ligne">
+                                    <p class="timbre-prix"><b>Mise actuelle :</b></p>
+                                    <p><b>650 $</b></p>
+                                </div>
+                                <div class="txt-enchere-ligne">
+                                    <p class="timbre-temps-restant"><b>Temps restant :</b></p>
+                                    <p class="texte-vert"><b>2 jours 15 heures</b></p>
+                                </div>
+                            </div>
+                            <form action="index.html" class="mise">
+                                <input type="number" name="prix" class="input-selection variante-bleu"
+                                    placeholder="Entrez une mise" aria-label="Entrez une mise pour l'action">
+                                <input type="submit" value="Miser" class="bouton">
+                            </form>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            <section class="texte-img-float">
+                <h2> À propos du Lord Stampee Reginald</h2>
+                <article>
+                    <img src="{{asset}}/img/lord-stampee-certified.png" alt="image tampon lord stampee">
+                    <p>Grand duc en Anglettere, Mr.Lord Stampee Reginald est un fin passionnée de philatélie.</p>
+                    <p>Tantot collectionneur, tantot vendeur, il souhaite faire partager et éttoffer sa collection</p>
+                    <p>Souhaitant toucher un plus grand public, c'est dans cet objectif qu'il a investit dans ce projet de plateforme, afin de pouvoir faire profiter le monde et qui sait trouver le timbre rare.</p>
+                    <p>Donc venez explorer et enchérir!</p>
+                </article>
+            </section>
+            <section>
+                <h2>Les dernières actualités philatéliques</h2>
+                <div class="grille-cartes">
+                    <article class="carte is-event zoomEffet">
+                        <img src="{{asset}}/img/actu-phila-1.png" alt="actualité philatélie">
+                        <div class="carte-zone-txt">
+                            <h3>Jeudi 27 mars 2025</h3>
+                            <p>Lancement des émissions philatéliques
+                                et des produits spéciaux</p>
+                                <a href="#">Voir plus</a>
+                        </div>
+                    </article>
+                        <article class="carte is-event zoomEffet">
+                            <img src="{{asset}}/img/actu-phila-2.png" alt="actualité philatélie">
+                            <div class="carte-zone-txt">
+                                <h3>Mercredi 10 Mars 2025</h3>
+                                <p>Fête du timbre - Arts de la rue</p>
+                                    <a href="#">Voir plus</a>
+                            </div>
+                        </article>
+                        <article class="carte is-event zoomEffet">
+                            <img src="{{asset}}/img/actu-phila-3.png" alt="actualité philatélie">
+                            <div class="carte-zone-txt">
+                                <h3>Mercredi 24 Mars 2025</h3>
+                                <p>Nécropole nationale</p>
+                                    <a href="#">Voir plus</a>
+                            </div>
+                        </article>
+                </div>
+            </section>
+            <aside id="panneau-confiance" class="plein-plan">
+                <h2>Pouquoi Stampee ?</h2>
+                <div>
+                    <article>
+                        <i class="fa-regular fa-star fa-2xl"></i>
+                        <h3>Un choix qui vous ressemble</h3>
+                        <p>Découvrez une sélection de timbres originaux jusqu'á certaines pièces rares, certifiés par nos
+                            exeperts.</p>
+                    </article>
+                    <article>
+                        <i class="fa-solid fa-shield fa-2xl"></i>
+                        <h3>Protection des acheteurs</h3>
+                        <p>Nous assurons à tous les acheteurs d'utiliser des méthodes de paiement sécurisées, ainsi qu'une
+                            livraison
+                            en toute tranquilité.</p>
+                    </article>
+                    <article>
+                        <i class="fa-regular fa-hand-spock fa-2xl"></i>
+                        <h3>Service client dédié</h3>
+                        <p>Notre équipe est disponible pour vous accompagner et répondre à toutes vos questions.</p>
+                    </article>
+                    <article>
+                        <i class="fa-regular fa-comments fa-2xl"></i>
+                        <h3>Des milliers de collectionneurs satisfaits</h3>
+                        <p>Plus de 10 000 ventes réalisées avec succès. Une communauté de 2590 collectionneurs actifs nous
+                            fait
+                            confiance.</p>
+                    </article>
+                </div>
+                <div>
+                    <h3>Donc n'oublie pas de venir t'inscrire</h3>
+                    <a href="#" class="bouton">Inscription</a>
+                </div>
+            </aside>
+        {{ include('template/up-page.twig')}}
+        </main>
+
+
+{{ include('layouts/footer.twig')}}

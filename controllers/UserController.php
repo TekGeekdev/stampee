@@ -18,7 +18,7 @@ class UserController
         $validator = new Validator;
 
         $validator->field('name', $data['name'], "Le champ nom")->min(5);
-        $validator->field('email', $data['email'], "Le champ email")->required()->max(150)->email();
+        $validator->field('email', $data['email'], "Le champ email")->required()->max(150)->email()->unique("User");
         $validator->field('password', $data['password'], "Le champ mot de passe")->min(5)->max(50)->uppercase()->lowercase()->specialChars()->countainNumber();
 
         if ($validator->isSuccess()) {
