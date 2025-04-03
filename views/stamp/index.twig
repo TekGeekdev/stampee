@@ -37,7 +37,7 @@
 								<a href="{{base}}/stamp/edit?id={{stamp.id}}">Éditer</a>
 							</td>
 							<td>
-								<form action="" method="post" class="form-delete">
+								<form action="{{base}}/stamp/delete" method="post" class="form-delete">
 									<input type="hidden" name="id" value="{{stamp.id}}">
 									<input type="submit" class="bouton block danger" value="Supression">
 								</form>

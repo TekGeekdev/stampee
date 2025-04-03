@@ -11,3 +11,45 @@ math@admin.com
 public function index
 $dateFormated = $dateFormat->date($oneStamp["dateRelease"]);
 $selectAllStamp[$key]["dateRelease"]= $dateFormated;
+
+{{ include('layouts/header.twig', {title:'Création timbre'})}}
+
+foreach ($data as $oneData) {
+
+                if ($oneData != null) {
+                    $oneDataInsert                = [];
+                    $oneDataInsert["position"]    = $position;
+                    $oneDataInsert["description"] = $oneData;
+                    $oneDataInsert["stamp_id"]    = $idStampUser;
+                    $oneDataInsert["file"]        = "";
+
+                    foreach ($_FILES as $oneFile => $fileInfo) {
+
+                        if ($fileInfo["error"] === 0) {
+                            $folderUpload = __DIR__ . '/../public/uploads/';
+                            $target_file  = $folderUpload . basename($fileInfo["name"]);
+                            if (move_uploaded_file($fileInfo['tmp_name'], $target_file)) {
+                                $oneDataInsert["file"] = basename($fileInfo["name"]);
+                            }
+                        }
+                    }
+
+                    $FileToUpload = new FileToUpload;
+                    $insertData   = $FileToUpload->insert($oneDataInsert);
+
+                    if ($insertData) {
+                        $allDataInsert = true;
+                    } else {
+                        $allDataInsert = false;
+                    }
+
+                    $position++;
+                }
+            }
+
+            if ($allDataInsert) {
+                $_SESSION['stampId'] = null;
+                return View::redirect('user/show');
+            } else {
+                return View::render('error', ['msg' => 'Impossible d\'envoyer les images']);
+            }

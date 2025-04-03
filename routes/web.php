@@ -20,6 +20,7 @@ Route::post('/stamp/create-img', 'StampController@store_stamp_img');
 Route::get('/stamp/index', 'StampController@index');
 Route::get('/stamp/edit', 'StampController@edit');
 Route::post('/stamp/edit', 'StampController@update');
+Route::post('/stamp/delete', 'StampController@delete');
 
 Route::get('/auction/edit', 'AuctionController@index');
 

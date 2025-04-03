@@ -107,6 +107,22 @@ abstract class CRUD extends \PDO
         }
     }
 
+    final public function deleteWhere($whereField,$value)
+    {
+        if ($this->selectAllById($value,$whereField)) {
+            $sql  = "DELETE FROM $this->table WHERE $whereField = :$whereField ";
+            $stmt = $this->prepare($sql);
+            $stmt->bindValue(":$whereField ", $value);
+            if ($stmt->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
     public function unique($field, $value)
     {
         $sql  = "SELECT * FROM $this->table WHERE $field = :$field";
