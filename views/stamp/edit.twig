@@ -102,7 +102,8 @@
 						{{errors.content}}</span>
 				{% endif %}
 			</div>
-			<input type="submit" value="Créer le timbre" class="bouton">
+			<input type="hidden" name="user_id"  value="{{stamp.user_id}}">
+			<input type="submit" value="Modifier images" class="bouton">
 		</form>
 	</section>
 	{{ include('template/up-page.twig')}}

@@ -21,7 +21,7 @@ Route::get('/stamp/index', 'StampController@index');
 Route::get('/stamp/edit', 'StampController@edit');
 Route::post('/stamp/edit', 'StampController@update');
 
-
+Route::get('/auction/edit', 'AuctionController@index');
 
 Route::get('/login', 'AuthController@login');
 Route::post('/login', 'AuthController@store');

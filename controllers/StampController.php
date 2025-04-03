@@ -9,7 +9,6 @@ use App\Models\Stamp;
 use App\Providers\Auth;
 use App\Providers\Validator;
 use App\Providers\View;
-use App\Providers\Date;
 
 class StampController
 {
@@ -49,7 +48,6 @@ class StampController
         $selectCountry = $country->select();
 
         $validator->field('name', $data['name'], "Le champ titre")->required()->max(200);
-        // TODO: ajoute une couche pour verifier que c'est une date
         $validator->field('dateRelease', $data['dateRelease'], "Le champ date")->required();
         $validator->field('width', $data['width'], "Le champ largeur")->required()->number();
         $validator->field('height', $data['height'], "Le champ longueur")->required()->number();
@@ -157,31 +155,29 @@ class StampController
 
     public function index()
     {
-        $stamp          = new Stamp;
-        $color        = new Color;
-        $conditions       = new Conditions;
-        $country       = new CountryOrigin;
+        $stamp      = new Stamp;
+        $color      = new Color;
+        $conditions = new Conditions;
+        $country    = new CountryOrigin;
 
         $selectAllStamp = $stamp->selectAllById($_SESSION['user_id'], "user_id", "id");
 
         foreach ($selectAllStamp as $key => $oneStamp) {
-            $colorName = $color->selectId($oneStamp["color_id"]);
-            $selectAllStamp[$key]["color_id"]= $colorName["color"];
-            
-            $conditionsName = $conditions->selectId($oneStamp["conditions_id"]);
-            $selectAllStamp[$key]["conditions_id"]= $conditionsName["state"];
+            $colorName                        = $color->selectId($oneStamp["color_id"]);
+            $selectAllStamp[$key]["color_id"] = $colorName["color"];
 
-            $countryName = $country->selectId($oneStamp["countryOrigin_id"]);
-            $selectAllStamp[$key]["countryOrigin_id"]= $countryName["country"];
+            $conditionsName                        = $conditions->selectId($oneStamp["conditions_id"]);
+            $selectAllStamp[$key]["conditions_id"] = $conditionsName["state"];
+
+            $countryName                              = $country->selectId($oneStamp["countryOrigin_id"]);
+            $selectAllStamp[$key]["countryOrigin_id"] = $countryName["country"];
 
         }
-        echo('<pre>'); 
-        print_r($selectAllStamp);
-        echo('</pre>');
         return View::render('stamp/index', ['AllStamp' => $selectAllStamp]);
     }
 
-    public function edit(){
+    public function edit()
+    {
         $get = ! empty($get) ? $get : $_GET;
         var_dump($get);
         $idStamp = $get["id"];
@@ -195,17 +191,68 @@ class StampController
         $country       = new CountryOrigin;
         $selectCountry = $country->select();
 
-        $stamp = new Stamp;
+        $stamp       = new Stamp;
         $selectStamp = $stamp->selectID($idStamp);
 
         // echo('<pre>');
         // print_r($selectStamp);
         // echo('</pre>');
-        if($_SESSION["user_id"] == $selectStamp["user_id"]){
-            return View::render('stamp/create', ['colors' => $selectColors,'stamp' => $selectStamp, 'conditions' => $selectConditions, 'countries' => $selectCountry]);
-        }else {
-            return View::render('error', ['msg' => "Vous n'avez accès à cette zone"]);
+        if ($_SESSION["user_id"] == $selectStamp["user_id"]) {
+            return View::render('stamp/edit', ['colors' => $selectColors, 'stamp' => $selectStamp, 'conditions' => $selectConditions, 'countries' => $selectCountry]);
+        } else {
+            return View::render('error', ['msg' => "Vous n'avez pas accès à cette zone"]);
         }
-        
+    }
+
+    public function update($data = [])
+    {
+
+        $get = ! empty($get) ? $get : $_GET;
+        $idStamp = $get["id"];
+
+        if ($_SESSION["user_id"] == $data["user_id"]) {
+            $validator = new Validator;
+
+            $color        = new Color;
+            $selectColors = $color->select();
+
+            $conditions       = new Conditions;
+            $selectConditions = $conditions->select();
+
+            $country       = new CountryOrigin;
+            $selectCountry = $country->select();
+
+            $validator->field('name', $data['name'], "Le champ titre")->required()->max(200);
+            $validator->field('dateRelease', $data['dateRelease'], "Le champ date")->required();
+            $validator->field('width', $data['width'], "Le champ largeur")->required()->number();
+            $validator->field('height', $data['height'], "Le champ longueur")->required()->number();
+            $validator->field('certified', $data['certified'] ?? null, "Le champ certifier")->notSelect();
+            $validator->field('color_id', $data['color_id'] ?? null, "Le champ couleur")->notSelect();
+            $validator->field('countryOrigin_id', $data['countryOrigin_id'] ?? null, "Le champ pays")->notSelect();
+            $validator->field('conditions_id', $data['conditions_id'] ?? null, "Le champ condition")->notSelect();
+            $validator->field('content', $data['content'], "Le champ content")->required();
+
+            if ($validator->isSuccess()) {
+
+                $data["user_id"] = $_SESSION['user_id'];
+                $stamp           = new Stamp;
+                $updateStamp     = $stamp->update($data, $idStamp);
+
+                if ($updateStamp) {
+                    echo("update ok");
+                    die();
+                    $_SESSION['stampId'] = $insertStamp;
+                    return view::redirect('stamp/create-img');
+                } else {
+                    return View::render('error', ['msg' => 'Impossible d\'envoyer l\'article']);
+                }
+
+            } else {
+                $errors = $validator->getErrors();
+                return View::render('stamp/create', ['errors' => $errors, 'stamp' => $data, 'colors' => $selectColors, 'conditions' => $selectConditions, 'countries' => $selectCountry]);
+            }
+        } else {
+            return View::render('error', ['msg' => "Vous n'avez pas accès à cette zone"]);
+        }
     }
 }
