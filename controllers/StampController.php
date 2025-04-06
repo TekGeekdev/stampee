@@ -83,17 +83,17 @@ class StampController
     {
         $validator = new Validator;
 
-        $validator->field('file', $_FILES["file"], "L'image")->fileUploaded("file")->imgMinSize("file", 300, 200)->imgFormat("file")->fileExists("file");
+        $validator->field('file', $_FILES["file"], "L'image")->fileUploaded("file")->imgMinSize("file", 300, 200)->imgFormat("file")->fileExists("file")->fileWeight("file");
         $validator->field('description', $data['description'], "Le champ description")->required()->min(5)->max(60);
 
         if ($_FILES["secondFile"]["error"] === 0) {
-            $validator->field('secondFile', $_FILES["secondFile"], "L'image")->imgMinSize("secondFile", 300, 200)->imgFormat("secondFile")->fileExists("secondFile");
+            $validator->field('secondFile', $_FILES["secondFile"], "L'image")->imgMinSize("secondFile", 300, 200)->imgFormat("secondFile")->fileExists("secondFile")->fileWeight("secondFile");
 
             $validator->field('secondDescription', $data['secondDescription'], "Le champ description")->required()->min(5)->max(60);
         }
 
         if ($_FILES["thirdFile"]["error"] === 0) {
-            $validator->field('thirdFile', $_FILES["thirdFile"], "L'image")->imgMinSize("thirdFile", 300, 200)->imgFormat("thirdFile")->fileExists("thirdFile");
+            $validator->field('thirdFile', $_FILES["thirdFile"], "L'image")->imgMinSize("thirdFile", 300, 200)->imgFormat("thirdFile")->fileExists("thirdFile")->fileWeight("thirdFile");
 
             $validator->field('thirdDescription', $data['thirdDescription'], "Le champ description")->required()->min(5)->max(60);
         }
@@ -201,9 +201,7 @@ class StampController
         $stamp       = new Stamp;
         $selectStamp = $stamp->selectID($idStamp);
 
-        // echo('<pre>');
-        // print_r($selectStamp);
-        // echo('</pre>');
+        
         if ($_SESSION["user_id"] == $selectStamp["user_id"]) {
             return View::render('stamp/edit', ['colors' => $selectColors, 'stamp' => $selectStamp, 'conditions' => $selectConditions, 'countries' => $selectCountry]);
         } else {

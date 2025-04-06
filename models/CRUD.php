@@ -32,6 +32,20 @@ abstract class CRUD extends \PDO
         }
     }
 
+    final public function selectIdWhere($whereField, $value)
+    {
+        $sql  = "SELECT * FROM $this->table WHERE $whereField = :value";
+        $stmt = $this->prepare($sql);
+        $stmt->bindValue(":value", $value);
+        $stmt->execute();
+        $count = $stmt->rowCount();
+        if ($count == 1) {
+            return $stmt->fetch();
+        } else {
+            return false;
+        }
+    }
+
     final public function selectAllById($value, $whereField, $field = null, $order = 'ASC')
     {
         if ($field === null) {
