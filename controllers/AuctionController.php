@@ -45,7 +45,6 @@ class AuctionController
                 $auctions[$auctionsIndex]['maxBidderName'] = $selectBidderName["name"];
             } else {
                 $auctions[$auctionsIndex]['maxBid']        = "Aucune mise";
-                $auctions[$auctionsIndex]['maxBid']        = "Aucune";
                 $auctions[$auctionsIndex]['maxBidderName'] = "Aucun(e)";
             }
 
