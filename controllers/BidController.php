@@ -1,12 +1,13 @@
 <?php
 namespace App\Controllers;
 
+use App\Models\Auction;
+use App\Models\Bid;
+use App\Models\Conditions;
+use App\Models\FileToUpload;
+use App\Models\Stamp;
 use App\Providers\Validator;
 use App\Providers\View;
-use App\Models\Stamp;
-use App\Models\FileToUpload;
-use App\Models\Conditions;
-use App\Models\Auction;
 
 class BidController
 {
@@ -16,10 +17,43 @@ class BidController
         $validator = new Validator;
         $validator->field('bid', $data['bid'], "Le champ enchère")->number();
 
+        // echo('<pre>');
+        // print_r($auctionJustBid);
+        // echo('</pre>');
         if (! empty($_SESSION)) {
-            if ($validator->isSuccess()) {} else {
-                $objAuction = new Auction;
-                $auctions   = $objAuction->select();
+
+            if ($validator->isSuccess()) {
+
+                $objAuction     = new Auction;
+                $auctionJustBid = $objAuction->selectId($data["id"]);
+
+                $objBid = new Bid;
+
+                if ($data["bid"] > $auctionJustBid["startPrice"]) {
+                    $dataInsert= [];
+                    $dataInsert["bid"]= $data["bid"];
+                    $dataInsert["auction_id"]= $data["id"];
+                    $dataInsert["user_id"] = $_SESSION['user_id'];
+
+        //             echo('<pre>');
+        // print_r($auctionJustBid);
+        // print_r($data);
+        // echo('</pre>');
+        // die();
+                    $insertBid       = $objBid->insert($dataInsert);
+                    if ($insertBid) {
+                        return view::redirect('auction');
+                    } else {
+                        return View::render('error', ['msg' => "Impossible de saisir l'enchère"]);
+                    }
+
+                } else {
+                    return View::render('error', ['msg' => "Votre enchère est trop petite."]);
+                }
+
+            } else {
+
+                $auctions = $objAuction->select();
 
                 $objStamp        = new Stamp;
                 $objFileToUpload = new FileToUpload;
@@ -42,6 +76,9 @@ class BidController
                         }
                     }
                 }
+                // if($data["bid"]< ){
+
+                // }
                 echo('<pre>');
                 print_r($data);
                 echo('</pre>');

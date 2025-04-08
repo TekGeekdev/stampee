@@ -1,320 +1,364 @@
 {{ include('layouts/header.twig', {title:'Mes timbres'})}}
 
 <main class="fiche">
-            <div class="fil-ariane">
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="size-6" width="24px">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                    </svg>
-                    <a href="#">Évènement /</a>
-                    <a href="#">Vente par lots / </a>
-                    <h1>lot n : 1940-01</h1>
-                </div>
-                <div>
-                    <a href="#">Précèdent</a>
-                    <a href="#">Suivant</a>
-                </div>
-            </div>
-            <section class="div-et-div-rev-avec-sticky">
-                <div>
-                    <header>
-                        <h2>Timbre "Travail, Famille, Patrie"</h2>
-                    </header>
-                    <article>
-                        <h3 class="border-bottom-classique">Informations générales</h3>
-                        <p><b>Pays d'origine : France</b></p>
-                        <p><b>Année d'émission : 1941</b></p>
-                        <p>Valeur faciale : 1 franc</p>
-                        <p>Contact : <a href="#">Option pour poser des questions au vendeur.</a></p>
-                        <p>Ville ou pays d’expédition : France</p>
-                    </article>
-                    <article>
-                        <h3 class="border-bottom-classique">Informations commerciales</h3>
-                        <div class="div-et-div space-between center">
-                            <div>
-                                <p><b>Mise actuelle : 35 $</b></p>
-                                <p><b>Mise à prix : 10 €</b></p>
-                                <p>Valeur estimée : 15-25 $ (selon état et rareté)</p>
-                                <p>Frais de livraison : 2 $ (France), 5 $ (international)</p>
-                                <p>Assurance : Oui (optionnelle)</p>
-                            </div>
-                            <div>
-                                <form action="#">
-                                    <input type="number" name="mise" id="mise" aria-label="saisir une valeur de mise"
-                                        class="input-selection variante-bleu" placeholder="Placer une mise">
-                                    <input type="submit" value="Placer l'enchère" class="bouton">
-                                </form>
-                                <div>
-                                    <p>Paiement par :</p>
-                                    <div class="img-ligne-petites">
-                                        <a href="https://www.americanexpress.com/fr-ca/"><img src="/assets/img/amex.svg"
-                                                alt="logo american express"></a>
-                                        <a href="https://www.mastercard.ca/fr-ca.html"><img
-                                                src="/assets/img/mastercard.svg" alt="logo mastercard"></a>
-                                        <a href="https://www.visa.ca/fr_CA"><img src="/assets/img/visa.svg"
-                                                alt="logo visa"></a>
-                                        <a href="https://www.paypal.com/ca/home?locale.x=fr_CA"><img
-                                                src="/assets/img/paypal.svg" alt="logo paypal"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="tiroir-vertical">
-                        <details open>
-                            <summary class="border-bottom-classique">
-                                <h3>Caractéristiques</h3>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
-                                </svg>
-                            </summary>
-                            <p><b>État : Très bon (léger jaunissement dû à l'âge)</b></p>
-                            <p>Dimensions : Environ 22 × 26 mm</p>
-                            <p>Forme : Rectangulaire</p>
-                            <p>Dentelure : 13½ x 14</p>
-                            <p>Papier : Papier gommé standard</p>
-                        </details>
-                    </article>
-                    <article class="tiroir-vertical">
-                        <details>
-                            <summary class="border-bottom-classique">
-                                <h3>Authenticité et rareté</h3>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
-                                </svg>
-                            </summary>
-                            <p>Numéro de catalogue : Yvert et Tellier N° 467</p>
-                            <p>Rareté : Assez courant mais recherché par les collectionneurs de la période Vichy</p>
-                            <p>Certificat d'authenticité : Non (peut être vérifié sur demande)</p>
-                            <p>Particularités : Design typique de la propagande du régime de Vichy</p>
-                        </details>
-                    </article>
-                    <article class="tiroir-vertical">
-                        <details>
-                            <summary class="border-bottom-classique">
-                                <h3>Description et contexte</h3>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
-                                </svg>
-                            </summary>
-                            <p>Thème : Régime de Vichy, propagande d’État</p>
-                            <p>Contexte historique : Émis sous le régime de Vichy, ce timbre faisait partie de la
-                                propagande
-                                officielle avec la devise "Travail, Famille, Patrie"</p>
-                            <p>Pays d'origine : 🇫🇷 France</p>
-                            <p>Émission spéciale : Non, émission courante sous le gouvernement de Vichy</p>
-                        </details>
-                    </article>
-                </div>
-                <div class="grd-img-petites-img">
-                    <img src="/assets/img/fiche-img-4.webp" alt="image fiche" class="zoomEffet">
-                    <div class="panneau-controle-img">
-                        <span>Survoler pour zoomer</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM13.5 10.5h-6" />
-                        </svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM10.5 7.5v6m3-3h-6" />
-                        </svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
-                        </svg>
+	<div class="fil-ariane">
+		<div>
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6" width="24px">
+				<path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/>
+			</svg>
+			<a href="#">Évènement /</a>
+			<a href="#">Vente par lots /
+			</a>
+			<h1>lot n : 1940-01</h1>
+		</div>
+		<div>
+			<a href="#">Précèdent</a>
+			<a href="#">Suivant</a>
+		</div>
+	</div>
+	<section class="div-et-div-rev-avec-sticky">
+		<div>
+			<header>
+				<h2>{{auction.name}}</h2>
+			</header>
+			<article>
+				<h3 class="border-bottom-classique">Informations générales</h3>
+				<p>{{stampInfo.name}}</p>
+				<p>
+					Pays d'origine :
+					{{stampInfo.countryName}}
+				</p>
+				<p>
+					<b>
+						Année d'émission :
+						{{stampInfo.dateRelease}}
+					</b>
+				</p>
+				<p>Contact :
+					<a href="#">{{stampInfo.userName}}</a>
+				</p>
+				<p>Ville ou pays d’expédition : Angleterre</p>
+			</article>
+			<article>
+				<h3 class="border-bottom-classique">Informations commerciales</h3>
+				<div class="div-et-div space-between center">
+					<div>
+						<p>
+							<b>Date début enchère :
+							</b>
+							{{auction.dateStart}}</p>
+						<p>
+							<b>Date fin enchère :
+							</b>
+							{{auction.dateFinish}}</p>
+						<p>
+							<b>Mise à prix :
+								{{auction.startPrice}}
+								$</b>
+						</p>
+						<p>
+							<b>Mise actuelle : ???</b>
+						</p>
+						<p>Frais de livraison : 2 $ (France), 5 $ (international)</p>
+						<p>Assurance : Oui (optionnelle)</p>
+					</div>
+					<div>
+						<form action="#">
+							<input type="number" name="mise" id="mise" aria-label="saisir une valeur de mise" class="input-selection variante-bleu" placeholder="Placer une mise">
+							<input type="submit" value="Placer l'enchère" class="bouton">
+						</form>
+						<div>
+							<p>Paiement par :</p>
+							<div class="img-ligne-petites">
+								<a href="https://www.americanexpress.com/fr-ca/"><img src="{{asset}}/img/amex.svg" alt="logo american express"></a>
+								<a href="https://www.mastercard.ca/fr-ca.html"><img src="{{asset}}/img/mastercard.svg" alt="logo mastercard"></a>
+								<a href="https://www.visa.ca/fr_CA"><img src="{{asset}}/img/visa.svg" alt="logo visa"></a>
+								<a href="https://www.paypal.com/ca/home?locale.x=fr_CA"><img src="{{asset}}/img/paypal.svg" alt="logo paypal"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</article>
+			<article class="tiroir-vertical">
+				<details open>
+					<summary class="border-bottom-classique">
+						<h3>Caractéristiques</h3>
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+							<path stroke-linecap="round" stroke-linejoin="round" d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5"/>
+						</svg>
+					</summary>
+					<p>
+						<b>État :
+							{{stampInfo.conditionState}}</b>
+					</p>
+					<p>Largeur:
+						{{stampInfo.width}}
+						cm</p>
+					<p>Longueur :
+						{{stampInfo.height}}
+						cm</p>
+					<p>Couleur principale :
+						{{stampInfo.colorName}}</p>
+					{% if stampInfo.draw != null %}
+						<p>Tirage :
+							{{stampInfo.draw}}</p>
+					{% endif %}
+					<p>Papier : Papier gommé standard</p>
+				</details>
+			</article>
+			<article class="tiroir-vertical">
+				<details>
+					<summary class="border-bottom-classique">
+						<h3>Authenticité et rareté</h3>
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+							<path stroke-linecap="round" stroke-linejoin="round" d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5"/>
+						</svg>
+					</summary>
+					<p>Numéro de catalogue : Yvert et Tellier N° 467</p>
+					<p>Rareté : Assez courant mais recherché par les collectionneurs de la période Vichy</p>
+					<p>Certificat d'authenticité : Non (peut être vérifié sur demande)</p>
+					<p>Particularités : Design typique de la propagande du régime de Vichy</p>
+				</details>
+			</article>
+			<article class="tiroir-vertical">
+				<details>
+					<summary class="border-bottom-classique">
+						<h3>Description et contexte</h3>
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+							<path stroke-linecap="round" stroke-linejoin="round" d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5"/>
+						</svg>
+					</summary>
+					<p>
+						<b>Description:</b>
+					</p>
+					<p>{{stampInfo.content}}</p>
 
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M9 9V4.5M9 9H4.5M9 9 3.75 3.75M9 15v4.5M9 15H4.5M9 15l-5.25 5.25M15 9h4.5M15 9V4.5M15 9l5.25-5.25M15 15h4.5M15 15v4.5m0-4.5 5.25 5.25" />
-                        </svg>
+				</details>
+			</article>
+		</div>
+		<div class="grd-img-petites-img">
+			{% for image in images %}
+				{% if image.position == 0 %}
+					<img src="{{uploads}}{{image.file}}" alt="image fiche" class="zoomEffet">
+				{% endif %}
+			{% endfor %}
+			<div class="panneau-controle-img">
+				<span>Survoler pour zoomer</span>
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+					<path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM13.5 10.5h-6"/>
+				</svg>
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+					<path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM10.5 7.5v6m3-3h-6"/>
+				</svg>
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+					<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15"/>
+				</svg>
 
-                    </div>
-                    <div class="img-ligne-petites">
-                        <img src="/assets/img/fiche-img-1.webp" alt="image fiche" class="zoomEffet">
-                        <img src="/assets/img/fiche-img-2.webp" alt="image fiche" class="zoomEffet">
-                        <img src="/assets/img/fiche-img-3.webp" alt="image fiche" class="zoomEffet ">
-                    </div>
-                </div>
-            </section>
-            <section>
-                <h2>Nos dernières enchères</h2>
-                <div class="grille-cartes">
-                    <article class="carte zoomEffet ombre-boite">
-                        <div class="carte-img-avec-favoris">
-                            <img class="carte-timbre-image" src="/assets/img/timbre-24cents.webp" alt="image d'un timbre">
-                            <input class="carte-timbre-favoris" type="checkbox" name="favoris"
-                                aria-label="icone pour mettre une enchère en favoris">
-                        </div>
-                        <div class="carte-zone-txt">
-                            <div class="entete-enchere">
-                                <h3 class="timbre-titre">Timbre de 24 cents</h3>
-                                <div class="txt-enchere-colonne">
-                                    <div class="txt-enchere-ligne">
-                                        <p class="timbre-etat">État :</p>
-                                        <p>Neuf</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="txt-enchere-colonne">
-                                <div class="txt-enchere-ligne">
-                                    <p class="timbre-prix"><b>Mise actuelle :</b></p>
-                                    <p><b>650 $</b></p>
-                                </div>
-                                <div class="txt-enchere-ligne">
-                                    <p class="timbre-temps-restant"><b>Temps restant :</b></p>
-                                    <p class="texte-vert"><b>3 jours 21 heures</b></p>
-                                </div>
-                            </div>
-                            <form action="index.html" class="mise">
-                                <input type="number" name="prix" class="input-selection variante-bleu"
-                                    placeholder="Entrez une mise" aria-label="Entrez une mise pour l'action">
-                                <input type="submit" value="Miser" class="bouton">
-                            </form>
-                        </div>
-                    </article>
-                    <article class="carte zoomEffet ombre-boite">
-                        <div class="carte-img-avec-favoris">
-                            <img class="carte-timbre-image" src="/assets/img/timbre-30cents.webp" alt="image d'un timbre">
-                            <input class="carte-timbre-favoris" type="checkbox" name="favoris"
-                                aria-label="icone pour mettre une enchère en favoris">
-                        </div>
-                        <div class="carte-zone-txt">
-                            <div class="entete-enchere">
-                                <h3 class="timbre-titre">Timbre de 30 cents</h3>
-                                <div class="txt-enchere-colonne">
-                                    <div class="txt-enchere-ligne">
-                                        <p class="timbre-etat">État :</p>
-                                        <p>Neuf</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="txt-enchere-colonne">
-                                <div class="txt-enchere-ligne">
-                                    <p class="timbre-prix"><b>Mise actuelle :</b></p>
-                                    <p><b>650 $</b></p>
-                                </div>
-                                <div class="txt-enchere-ligne">
-                                    <p class="timbre-temps-restant"><b>Temps restant :</b></p>
-                                    <p class="texte-vert"><b>15 jours 19 heures</b></p>
-                                </div>
-                            </div>
-                            <form action="index.html" class="mise">
-                                <input type="number" name="prix" class="input-selection variante-bleu"
-                                    placeholder="Entrez une mise" aria-label="Entrez une mise pour l'action">
-                                <input type="submit" value="Miser" class="bouton">
-                            </form>
-                        </div>
-                    </article>
-                    <article class="carte zoomEffet ombre-boite">
-                        <div class="carte-img-avec-favoris">
-                            <img class="carte-timbre-image" src="/assets/img/timbre-great-britain-penny-black.webp" alt="image d'un timbre">
-                            <input class="carte-timbre-favoris" type="checkbox" name="favoris"
-                                aria-label="icone pour mettre une enchère en favoris">
-                        </div>
-                        <div class="carte-zone-txt">
-                            <div class="entete-enchere">
-                                <h3 class="timbre-titre">Great Britain Penny Black</h3>
-                                <div class="txt-enchere-colonne">
-                                    <div class="txt-enchere-ligne">
-                                        <p class="timbre-etat">État :</p>
-                                        <p>Neuf</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="txt-enchere-colonne">
-                                <div class="txt-enchere-ligne">
-                                    <p class="timbre-prix"><b>Mise actuelle :</b></p>
-                                    <p><b>650 $</b></p>
-                                </div>
-                                <div class="txt-enchere-ligne">
-                                    <p class="timbre-temps-restant"><b>Temps restant :</b></p>
-                                    <p class="texte-rouge"><b>17 heures</b></p>
-                                </div>
-                            </div>
-                            <form action="index.html" class="mise">
-                                <input type="number" name="prix" class="input-selection variante-bleu"
-                                    placeholder="Entrez une mise" aria-label="Entrez une mise pour l'action">
-                                <input type="submit" value="Miser" class="bouton">
-                            </form>
-                        </div>
-                    </article>
-                    <article class="carte zoomEffet ombre-boite">
-                        <div class="carte-img-avec-favoris">
-                            <img class="carte-timbre-image" src="/assets/img/timbre-first-car-post.webp" alt="image d'un timbre">
-                            <input class="carte-timbre-favoris" type="checkbox" name="favoris"
-                                aria-label="icone pour mettre une enchère en favoris">
-                        </div>
-                        <div class="carte-zone-txt">
-                            <div class="entete-enchere">
-                                <h3 class="timbre-titre">First car canada post</h3>
-                                <div class="txt-enchere-colonne">
-                                    <div class="txt-enchere-ligne">
-                                        <p class="timbre-etat">État :</p>
-                                        <p>Neuf</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="txt-enchere-colonne">
-                                <div class="txt-enchere-ligne">
-                                    <p class="timbre-prix"><b>Mise actuelle :</b></p>
-                                    <p><b>650 $</b></p>
-                                </div>
-                                <div class="txt-enchere-ligne">
-                                    <p class="timbre-temps-restant"><b>Temps restant :</b></p>
-                                    <p class="texte-vert"><b>2 jours 15 heures</b></p>
-                                </div>
-                            </div>
-                            <form action="index.html" class="mise">
-                                <input type="number" name="prix" class="input-selection variante-bleu"
-                                    placeholder="Entrez une mise" aria-label="Entrez une mise pour l'action">
-                                <input type="submit" value="Miser" class="bouton">
-                            </form>
-                        </div>
-                    </article>
-                </div>
-            </section>
-            <aside id="panneau-confiance" class="plein-plan">
-                <h2>Pouquoi Stampee ?</h2>
-                <div>
-                    <article>
-                        <i class="fa-regular fa-star fa-2xl"></i>
-                        <h3>Un choix qui vous ressemble</h3>
-                        <p>Découvrez une sélection de timbres originaux jusqu'á certaines pièces rares, certifiés par nos
-                            exeperts.</p>
-                    </article>
-                    <article>
-                        <i class="fa-solid fa-shield fa-2xl"></i>
-                        <h3>Protection des acheteurs</h3>
-                        <p>Nous assurons à tous les acheteurs d'utiliser des méthodes de paiement sécurisées, ainsi qu'une
-                            livraison
-                            en toute tranquilité.</p>
-                    </article>
-                    <article>
-                        <i class="fa-regular fa-hand-spock fa-2xl"></i>
-                        <h3>Service client dédié</h3>
-                        <p>Notre équipe est disponible pour vous accompagner et répondre à toutes vos questions.</p>
-                    </article>
-                    <article>
-                        <i class="fa-regular fa-comments fa-2xl"></i>
-                        <h3>Des milliers de collectionneurs satisfaits</h3>
-                        <p>Plus de 10 000 ventes réalisées avec succès. Une communauté de 2590 collectionneurs actifs nous
-                            fait
-                            confiance.</p>
-                    </article>
-                </div>
-            </aside>
-        </main>
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+					<path stroke-linecap="round" stroke-linejoin="round" d="M9 9V4.5M9 9H4.5M9 9 3.75 3.75M9 15v4.5M9 15H4.5M9 15l-5.25 5.25M15 9h4.5M15 9V4.5M15 9l5.25-5.25M15 15h4.5M15 15v4.5m0-4.5 5.25 5.25"/>
+				</svg>
+
+			</div>
+			<div class="img-ligne-petites">
+				{% for image in images %}
+					<img src="{{uploads}}{{image.file}}" alt="image fiche" class="zoomEffet">
+				{% endfor %}
+			</div>
+
+		</div>
+	</section>
+	<section>
+		<h2>Nos dernières enchères</h2>
+		<div class="grille-cartes">
+			<article class="carte zoomEffet ombre-boite">
+				<div class="carte-img-avec-favoris">
+					<img class="carte-timbre-image" src="/assets/img/timbre-24cents.webp" alt="image d'un timbre">
+					<input class="carte-timbre-favoris" type="checkbox" name="favoris" aria-label="icone pour mettre une enchère en favoris">
+				</div>
+				<div class="carte-zone-txt">
+					<div class="entete-enchere">
+						<h3 class="timbre-titre">Timbre de 24 cents</h3>
+						<div class="txt-enchere-colonne">
+							<div class="txt-enchere-ligne">
+								<p class="timbre-etat">État :</p>
+								<p>Neuf</p>
+							</div>
+						</div>
+					</div>
+					<div class="txt-enchere-colonne">
+						<div class="txt-enchere-ligne">
+							<p class="timbre-prix">
+								<b>Mise actuelle :</b>
+							</p>
+							<p>
+								<b>650 $</b>
+							</p>
+						</div>
+						<div class="txt-enchere-ligne">
+							<p class="timbre-temps-restant">
+								<b>Temps restant :</b>
+							</p>
+							<p class="texte-vert">
+								<b>3 jours 21 heures</b>
+							</p>
+						</div>
+					</div>
+					<form action="index.html" class="mise">
+						<input type="number" name="prix" class="input-selection variante-bleu" placeholder="Entrez une mise" aria-label="Entrez une mise pour l'action">
+						<input type="submit" value="Miser" class="bouton">
+					</form>
+				</div>
+			</article>
+			<article class="carte zoomEffet ombre-boite">
+				<div class="carte-img-avec-favoris">
+					<img class="carte-timbre-image" src="/assets/img/timbre-30cents.webp" alt="image d'un timbre">
+					<input class="carte-timbre-favoris" type="checkbox" name="favoris" aria-label="icone pour mettre une enchère en favoris">
+				</div>
+				<div class="carte-zone-txt">
+					<div class="entete-enchere">
+						<h3 class="timbre-titre">Timbre de 30 cents</h3>
+						<div class="txt-enchere-colonne">
+							<div class="txt-enchere-ligne">
+								<p class="timbre-etat">État :</p>
+								<p>Neuf</p>
+							</div>
+						</div>
+					</div>
+					<div class="txt-enchere-colonne">
+						<div class="txt-enchere-ligne">
+							<p class="timbre-prix">
+								<b>Mise actuelle :</b>
+							</p>
+							<p>
+								<b>650 $</b>
+							</p>
+						</div>
+						<div class="txt-enchere-ligne">
+							<p class="timbre-temps-restant">
+								<b>Temps restant :</b>
+							</p>
+							<p class="texte-vert">
+								<b>15 jours 19 heures</b>
+							</p>
+						</div>
+					</div>
+					<form action="index.html" class="mise">
+						<input type="number" name="prix" class="input-selection variante-bleu" placeholder="Entrez une mise" aria-label="Entrez une mise pour l'action">
+						<input type="submit" value="Miser" class="bouton">
+					</form>
+				</div>
+			</article>
+			<article class="carte zoomEffet ombre-boite">
+				<div class="carte-img-avec-favoris">
+					<img class="carte-timbre-image" src="/assets/img/timbre-great-britain-penny-black.webp" alt="image d'un timbre">
+					<input class="carte-timbre-favoris" type="checkbox" name="favoris" aria-label="icone pour mettre une enchère en favoris">
+				</div>
+				<div class="carte-zone-txt">
+					<div class="entete-enchere">
+						<h3 class="timbre-titre">Great Britain Penny Black</h3>
+						<div class="txt-enchere-colonne">
+							<div class="txt-enchere-ligne">
+								<p class="timbre-etat">État :</p>
+								<p>Neuf</p>
+							</div>
+						</div>
+					</div>
+					<div class="txt-enchere-colonne">
+						<div class="txt-enchere-ligne">
+							<p class="timbre-prix">
+								<b>Mise actuelle :</b>
+							</p>
+							<p>
+								<b>650 $</b>
+							</p>
+						</div>
+						<div class="txt-enchere-ligne">
+							<p class="timbre-temps-restant">
+								<b>Temps restant :</b>
+							</p>
+							<p class="texte-rouge">
+								<b>17 heures</b>
+							</p>
+						</div>
+					</div>
+					<form action="index.html" class="mise">
+						<input type="number" name="prix" class="input-selection variante-bleu" placeholder="Entrez une mise" aria-label="Entrez une mise pour l'action">
+						<input type="submit" value="Miser" class="bouton">
+					</form>
+				</div>
+			</article>
+			<article class="carte zoomEffet ombre-boite">
+				<div class="carte-img-avec-favoris">
+					<img class="carte-timbre-image" src="/assets/img/timbre-first-car-post.webp" alt="image d'un timbre">
+					<input class="carte-timbre-favoris" type="checkbox" name="favoris" aria-label="icone pour mettre une enchère en favoris">
+				</div>
+				<div class="carte-zone-txt">
+					<div class="entete-enchere">
+						<h3 class="timbre-titre">First car canada post</h3>
+						<div class="txt-enchere-colonne">
+							<div class="txt-enchere-ligne">
+								<p class="timbre-etat">État :</p>
+								<p>Neuf</p>
+							</div>
+						</div>
+					</div>
+					<div class="txt-enchere-colonne">
+						<div class="txt-enchere-ligne">
+							<p class="timbre-prix">
+								<b>Mise actuelle :</b>
+							</p>
+							<p>
+								<b>650 $</b>
+							</p>
+						</div>
+						<div class="txt-enchere-ligne">
+							<p class="timbre-temps-restant">
+								<b>Temps restant :</b>
+							</p>
+							<p class="texte-vert">
+								<b>2 jours 15 heures</b>
+							</p>
+						</div>
+					</div>
+					<form action="index.html" class="mise">
+						<input type="number" name="prix" class="input-selection variante-bleu" placeholder="Entrez une mise" aria-label="Entrez une mise pour l'action">
+						<input type="submit" value="Miser" class="bouton">
+					</form>
+				</div>
+			</article>
+		</div>
+	</section>
+	<aside id="panneau-confiance" class="plein-plan">
+		<h2>Pouquoi Stampee ?</h2>
+		<div>
+			<article>
+				<i class="fa-regular fa-star fa-2xl"></i>
+				<h3>Un choix qui vous ressemble</h3>
+				<p>Découvrez une sélection de timbres originaux jusqu'á certaines pièces rares, certifiés par nos
+										                            exeperts.</p>
+			</article>
+			<article>
+				<i class="fa-solid fa-shield fa-2xl"></i>
+				<h3>Protection des acheteurs</h3>
+				<p>Nous assurons à tous les acheteurs d'utiliser des méthodes de paiement sécurisées, ainsi qu'une
+										                            livraison
+										                            en toute tranquilité.</p>
+			</article>
+			<article>
+				<i class="fa-regular fa-hand-spock fa-2xl"></i>
+				<h3>Service client dédié</h3>
+				<p>Notre équipe est disponible pour vous accompagner et répondre à toutes vos questions.</p>
+			</article>
+			<article>
+				<i class="fa-regular fa-comments fa-2xl"></i>
+				<h3>Des milliers de collectionneurs satisfaits</h3>
+				<p>Plus de 10 000 ventes réalisées avec succès. Une communauté de 2590 collectionneurs actifs nous
+										                            fait
+										                            confiance.</p>
+			</article>
+		</div>
+	</aside>
+</main>
 
 
 {{ include('layouts/footer.twig')}}

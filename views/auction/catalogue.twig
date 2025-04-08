@@ -76,7 +76,7 @@
 						</div>
 						<form action="{{base}}/bid/store" class="mise">
 							<input type="hidden" name="id" value="{{auction.id}}">
-							<input type="text" name="bid" class="input-selection variante-bleu" placeholder="Entrez une mise" aria-label="Entrez une mise pour l'action">
+							<input type="number" name="bid" min="{{auction.startPrice + 1 }}" class="input-selection variante-bleu" placeholder="Entrez une mise" aria-label="Entrez une mise pour l'action">
 							<input type="submit" value="Miser" class="bouton">
 						</form>
                         {% if auction.id == bidData.id %}

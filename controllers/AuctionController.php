@@ -78,14 +78,13 @@ class AuctionController
         $conditionState              = $objCondition->selectId($stampInfo["conditions_id"]);
         $stampInfo["conditionState"] = $conditionState["state"];
 
-        $images = $objFileToUpload->selectAllById($stampInfo["id"], "stamp_id");
-
+        $stampImages = $objFileToUpload->selectAllById($stampInfo["id"], "stamp_id", "position");
+        
         echo('<pre>');
-        print_r($images);
-        print_r($auction);
-        print_r($stampInfo);
-        echo('</pre>');
+print_r($auction);
+print_r($stampInfo);
+echo('</pre>');
 
-        return View::render('auction/show');
+        return View::render('auction/show', ["images" => $stampImages , "auction" => $auction, "stampInfo" => $stampInfo]);
     }
 }
