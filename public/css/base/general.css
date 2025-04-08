@@ -76,6 +76,9 @@ html{
     min-height: 100%;
 }
 
+.span-erreur{
+    color: var(--couleur-annulation);
+}
 .ombre-permanent{
     box-shadow: 0px 10px 10px 2px var(--couleur-tertiaire);
 }

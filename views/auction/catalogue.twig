@@ -33,9 +33,11 @@
 		<div class="cartes">
 			{% for auction in auctions %}
 				<article class="carte zoomEffet ombre-boite">
-					<div class="carte-img-avec-favoris">
-						<img class="carte-timbre-image" src="{{uploads}}{{auction.fileName}}" alt="image d'un timbre">
-						<input class="carte-timbre-favoris" type="checkbox" name="favoris" aria-label="icone pour mettre une enchère en favoris">
+					<div class="carte-img-with-stampee">
+						<img src="{{uploads}}{{auction.fileName}}" alt="image d'un timbre">
+						{% if auction.lordLike == 1 %}
+						<img class="img-stampee" src="{{asset}}/img/stampeeApprouved.webp" alt="image d'un timbre">
+						{% endif %}
 					</div>
 					<div class="carte-zone-txt">
 						<div class="txt-enchere-ligne">
@@ -50,7 +52,7 @@
 									<p>{{auction.dateRelease}}</p>
 								</div>
 								<div class="txt-enchere-ligne">
-									<p class="timbre-etat">État :</p>
+									<p class="timbre-etat">Condition :</p>
 									<p>{{auction.condition}}</p>
 								</div>
 							</div>
@@ -58,11 +60,28 @@
 						<div class="txt-enchere-colonne">
 							<div class="txt-enchere-ligne">
 								<p class="timbre-prix">
-									<b>Mise actuelle :</b>
+									<b>Prix de départ :</b>
 								</p>
 								<p>
 									<b>{{auction.startPrice}}
 										$</b>
+								</p>
+							</div>
+							<div class="txt-enchere-ligne">
+								<p class="timbre-prix">
+									<b>Mise actuelle :</b>
+								</p>
+								<p>
+									<b>{{auction.maxBid}}
+										{% if auction.maxBid != "Aucune" %}${% endif %}</b>
+								</p>
+							</div>
+							<div class="txt-enchere-ligne">
+								<p class="timbre-prix">
+									<b>Enchérisseur:</b>
+								</p>
+								<p>
+									<b>{{auction.maxBidderName}}</b>
 								</p>
 							</div>
 							<div class="txt-enchere-ligne">
@@ -76,7 +95,7 @@
 						</div>
 						<form action="{{base}}/bid/store" class="mise">
 							<input type="hidden" name="id" value="{{auction.id}}">
-							<input type="number" name="bid" min="{{auction.startPrice + 1 }}" class="input-selection variante-bleu" placeholder="Entrez une mise" aria-label="Entrez une mise pour l'action">
+							<input type="text" name="bid" min="{{auction.startPrice + 1 }}" class="input-selection variante-bleu" placeholder="Entrez une mise" aria-label="Entrez une mise pour l'action">
 							<input type="submit" value="Miser" class="bouton">
 						</form>
                         {% if auction.id == bidData.id %}
