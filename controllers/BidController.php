@@ -17,9 +17,6 @@ class BidController
         $validator = new Validator;
         $validator->field('bid', $data['bid'], "Le champ enchère")->number();
 
-        // echo('<pre>');
-        // print_r($auctionJustBid);
-        // echo('</pre>');
         if (! empty($_SESSION)) {
 
             if ($validator->isSuccess()) {
@@ -28,19 +25,15 @@ class BidController
                 $auctionJustBid = $objAuction->selectId($data["id"]);
 
                 $objBid = new Bid;
+                $maxBid = $objBid->selectWhereIdMax("auction_id", $data["id"], "bid");
 
-                if ($data["bid"] > $auctionJustBid["startPrice"]) {
-                    $dataInsert= [];
-                    $dataInsert["bid"]= $data["bid"];
-                    $dataInsert["auction_id"]= $data["id"];
-                    $dataInsert["user_id"] = $_SESSION['user_id'];
+                if ($data["bid"] > $auctionJustBid["startPrice"] && $data["bid"] > $maxBid["bid"]) {
+                    $dataInsert               = [];
+                    $dataInsert["bid"]        = $data["bid"];
+                    $dataInsert["auction_id"] = $data["id"];
+                    $dataInsert["user_id"]    = $_SESSION['user_id'];
 
-        //             echo('<pre>');
-        // print_r($auctionJustBid);
-        // print_r($data);
-        // echo('</pre>');
-        // die();
-                    $insertBid       = $objBid->insert($dataInsert);
+                    $insertBid = $objBid->insert($dataInsert);
                     if ($insertBid) {
                         return view::redirect('auction');
                     } else {
@@ -76,13 +69,7 @@ class BidController
                         }
                     }
                 }
-                // if($data["bid"]< ){
 
-                // }
-                echo('<pre>');
-                print_r($data);
-                echo('</pre>');
-                // die();
                 $errors = $validator->getErrors();
                 return View::render('auction/catalogue', ['errors' => $errors, 'bidData' => $data, 'auctions' => $auctions]);
             }
@@ -90,10 +77,5 @@ class BidController
         } else {
             return view::redirect('login');
         }
-        // echo('<pre>');
-        // print_r($_SESSION);
-        // print_r($data);
-        // echo('</pre>');
-        // die();
     }
 }
