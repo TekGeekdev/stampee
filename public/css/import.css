@@ -30,6 +30,7 @@
 @import url("components/form.css");
 @import url("components/boite-flex.css");
 @import url("components/table.css");
+@import url("components/img-magnifier-container.css");
 
 /* page */ 
 @import url("pages/error.css");

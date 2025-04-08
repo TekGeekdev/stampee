@@ -57,16 +57,24 @@
 								$</b>
 						</p>
 						<p>
-							<b>Mise actuelle : ???</b>
+							<b>Mise actuelle : {{auction.maxBid}}
+										{% if auction.maxBid != "Aucune mise" %}$
+										{% endif %}</b>
 						</p>
+						<p>Enchérisseur : {{auction.maxBidderName}}</p>				
 						<p>Frais de livraison : 2 $ (France), 5 $ (international)</p>
 						<p>Assurance : Oui (optionnelle)</p>
 					</div>
 					<div>
-						<form action="#">
-							<input type="number" name="mise" id="mise" aria-label="saisir une valeur de mise" class="input-selection variante-bleu" placeholder="Placer une mise">
+						<form action="{{base}}/bid/store/show">
+							<input type="hidden" name="id" value="{{auction.id}}">
+							<input type="text" name="bid" min="{% if auction.maxBid == "Aucune mise" %}{{auction.startPrice + 1 }}{% else %}{{auction.maxBid + 1}}{% endif %}" value="{% if auction.maxBid == "Aucune mise" %}{{auction.startPrice + 1 }}{% else %}{{auction.maxBid + 1}}{% endif %}" class="input-selection variante-bleu" placeholder="Entrez une mise" aria-label="Entrez une mise pour l'action">
 							<input type="submit" value="Placer l'enchère" class="bouton">
 						</form>
+						{% if errors.bid is defined %}
+								<span class="span-erreur">
+									{{errors.bid}}</span>
+							{% endif %}
 						<div>
 							<p>Paiement par :</p>
 							<div class="img-ligne-petites">
@@ -139,7 +147,9 @@
 		<div class="grd-img-petites-img">
 			{% for image in images %}
 				{% if image.position == 0 %}
-					<img src="{{uploads}}{{image.file}}" alt="image fiche" class="zoomEffet">
+					<div class="img-magnifier-container">
+					<img id="bigImgShow" src="{{uploads}}{{image.file}}" alt="{{image.description}}" >
+					</div>
 				{% endif %}
 			{% endfor %}
 			<div class="panneau-controle-img">

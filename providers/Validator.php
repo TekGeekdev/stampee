@@ -192,24 +192,6 @@ class Validator
         return $this;
     }
 
-    // public function minBid($model)
-    // {
-    //     $model  = 'App\\Models\\' . $model;
-    //     $model  = new $model;
-    //     $selectModel = $model->
-    //     // $unique = $model->unique($this->key, $this->value);
-
-    //     if (strlen($this->value) > $length) {
-    //         $this->errors[$this->key] = "$this->name doit faire maximum $length caractères!";
-    //     }
-    //     return $this;
-    // }
-    //     if ($unique) {
-    //         $this->errors[$this->key] = "$this->name doit être unique.";
-    //     }
-    //     return $this;
-    // }
-
     public function isSuccess()
     {
         if (empty($this->errors)) {

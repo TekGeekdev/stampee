@@ -23,6 +23,7 @@ Route::get('/auction', 'AuctionController@index');
 Route::get('/auction/show', 'AuctionController@show');
 
 Route::get('/bid/store', 'BidController@store');
+Route::get('/bid/store/show', 'BidController@storeShow');
 
 Route::get('/login', 'AuthController@login');
 Route::post('/login', 'AuthController@store');

@@ -72,8 +72,20 @@ class AuctionController
         $objCountry      = new CountryOrigin;
         $objColor        = new Color;
         $objUser         = new User;
+        $objBid          = new Bid;
 
-        $auction   = $objAuction->selectId($idAuction);
+        $auction = $objAuction->selectId($idAuction);
+
+        $maxBid = $objBid->selectWhereIdMax("auction_id", $auction["id"], "bid");
+        if ($maxBid && ! empty($maxBid)) {
+            $auction['maxBid']        = $maxBid["bid"];
+            $selectBidderName         = $objUser->selectIdWhere("id", $maxBid["user_id"]);
+            $auction['maxBidderName'] = $selectBidderName["name"];
+        } else {
+            $auction['maxBid']        = "Aucune mise";
+            $auction['maxBidderName'] = "Aucun(e)";
+        }
+
         $stampInfo = $objStamp->selectId($auction["stamp_id"]);
 
         $colorName              = $objColor->selectId($stampInfo["color_id"]);
@@ -89,11 +101,6 @@ class AuctionController
         $stampInfo["conditionState"] = $conditionState["state"];
 
         $stampImages = $objFileToUpload->selectAllById($stampInfo["id"], "stamp_id", "position");
-
-        echo('<pre>');
-        print_r($auction);
-        print_r($stampInfo);
-        echo('</pre>');
 
         return View::render('auction/show', ["images" => $stampImages, "auction" => $auction, "stampInfo" => $stampInfo]);
     }
