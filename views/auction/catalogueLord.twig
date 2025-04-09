@@ -1,0 +1,232 @@
+{{ include('layouts/header.twig', {title:'Mes timbres'})}}
+<main id="cont-princ-aside-avec-main">
+	<section class="galerie">
+		<header>
+			<h2>Galerie philatélique</h2>
+			<div>
+				<label for="triage">Triez par :
+					<select name="pays-edition" id="triage" class="input-selection variante-bleu">
+						<option value="" selected disabled>choisissez un type</option>
+						<option value="alphabetAsc">Ordre A-Z</option>
+						<option value="AlphabetDesc">Ordre Z-A</option>
+						<option value="prixAsc">Prix croissant</option>
+						<option value="prixDesc">Prix décroissant</option>
+						<option value="tempsCourt">Temps restant le plus court</option>
+						<option value="tempsLong">Temps restant le plus long</option>
+						<option value="dateAnc">Date d'émission la plus ancienne</option>
+						<option value="dateRec">Date d'émission la plus récente</option>
+					</select>
+				</label>
+
+				<label for="format-carte" class="input-hover">
+					<i class="fa-solid fa-border-all fa-lg"></i>
+					Cartes
+					<input type="radio" id="format-carte" name="view" checked>
+				</label>
+				<label for="format-liste" class="input-hover">
+					<i class="fa-solid fa-list fa-lg"></i>
+					Liste
+					<input type="radio" id="format-liste" class="format-liste" name="view">
+				</label>
+			</div>
+		</header>
+		<div class="cartes">
+			{% if auctions is empty %}
+				<span>Aucun résultats concernant votre recherche.</span>
+			{% endif %}
+
+			{% for auction in auctions %}
+				<article class="carte zoomEffet ombre-boite">
+					<div class="carte-img-with-stampee">
+						<img src="{{uploads}}{{auction.fileName}}" alt="image d'un timbre">
+						{% if auction.lordLike == 1 %}
+							<img class="img-stampee" src="{{asset}}/img/stampeeApprouved.webp" alt="image d'un timbre">
+						{% endif %}
+					</div>
+					<div class="carte-zone-txt">
+						<div class="txt-enchere-ligne">
+							<p class="timbre-status">Titre enchère</p>
+							<p class="timbre-lot">{{auction.name}}</p>
+						</div>
+						<div class="entete-enchere">
+							<h3 class="timbre-titre">{{auction.nameStamp}}</h3>
+							<div class="txt-enchere-colonne">
+								<div class="txt-enchere-ligne">
+									<p class="timbre-annee">Année d'émission :</p>
+									<p>{{auction.dateRelease}}</p>
+								</div>
+								<div class="txt-enchere-ligne">
+									<p class="timbre-etat">Condition :</p>
+									<p>{{auction.condition}}</p>
+								</div>
+							</div>
+						</div>
+						<div class="txt-enchere-colonne">
+							<div class="txt-enchere-ligne">
+								<p class="timbre-prix">
+									<b>Prix de départ :</b>
+								</p>
+								<p>
+									<b>{{auction.startPrice}}
+										$</b>
+								</p>
+							</div>
+							<div class="txt-enchere-ligne">
+								<p class="timbre-prix">
+									<b>Mise actuelle :</b>
+								</p>
+								<p>
+									<b>{{auction.maxBid}}
+										{% if auction.maxBid != "Aucune mise" %}$
+										{% endif %}
+									</b>
+								</p>
+							</div>
+							<div class="txt-enchere-ligne">
+								<p class="timbre-prix">
+									<b>Enchérisseur:</b>
+								</p>
+								<p>
+									<b>{{auction.maxBidderName}}</b>
+								</p>
+							</div>
+							<div class="txt-enchere-ligne">
+								<p class="timbre-temps-restant">
+									<b>Temps restant :</b>
+								</p>
+								<p class="texte-vert">
+									<b>{{auction.timeLeft}}</b>
+								</p>
+							</div>
+						</div>
+						<form action="{{base}}/bid/store" class="mise">
+							<input type="hidden" name="id" value="{{auction.id}}">
+							<input type="number" name="bid" min="{% if auction.maxBid == "Aucune mise" %}{{auction.startPrice + 1 }}{% else %}{{auction.maxBid + 1}}{% endif %}" value="{% if auction.maxBid == "Aucune mise" %}{{auction.startPrice + 1 }}{% else %}{{auction.maxBid + 1}}{% endif %}" class="input-selection variante-bleu" placeholder="Entrez une mise" aria-label="Entrez une mise pour l'action">
+							<input type="submit" value="Miser" class="bouton">
+						</form>
+						{% if auction.id == bidData.id %}
+							{% if errors.bid is defined %}
+								<span class="span-erreur">
+									{{errors.bid}}</span>
+							{% endif %}
+						{% endif %}
+						<div>
+							<a href="{{base}}/auction/show?id={{auction.id}}">Voir détails de l'offre</a>
+						</div>
+					</div>
+				</article>
+			{% endfor %}
+		</div>
+	</section>
+	<aside class="filtres">
+		<form action="{{base}}/auction/lord/filter">
+			<h2>Filtres</h2>
+			<section class="select-a-droite">
+				<label for="conditions_id">
+					<h3>État/Qualité</h3>
+				</label>
+				<select name="conditions_id" id="conditions_id" class="input-selection variante-bleu">
+					<option value="disabled" {% if stamp.conditions_id == null %} selected {% endif %} disabled>Choisir un état</option>
+					{% for condition in conditions %}
+						<option value="{{condition.id}}" {% if stamp.conditions_id == condition.id %} selected {% endif %}>{{condition.state}}</option>
+					{% endfor %}
+				</select>
+			</section>
+			<section class="select-a-droite">
+				<label for="countryOrigin_id">
+					<h3>Pays d'émission</h3>
+				</label>
+				<select name="countryOrigin_id" id="countryOrigin_id" class="input-selection variante-bleu">
+					<option value="disabled" {% if stamp.countryOrigin_id == null %} selected {% endif %} disabled>Choisir un pays</option>
+					{% for country in countries %}
+						<option value="{{country.id}}" {% if stamp.countryOrigin_id == country.id %} selected {% endif %}>{{country.country}}</option>
+					{% endfor %}
+				</select>
+				{% if errors.countryOrigin_id is defined %}
+					<span class="span-erreur">
+						{{errors.countryOrigin_id}}</span>
+				{% endif %}
+			</section>
+			<section class="select-a-droite">
+				<label for="color_id">
+					<h3>Couleur dominante</h3>
+				</label>
+				<select name="color_id" id="color_id" class="input-selection variante-bleu">
+					<option value="disabled" {% if stamp.color_id == null %} selected {% endif %} disabled>Choisir une couleur</option>
+					{% for color in colors %}
+						<option value="{{color.id}}" {% if stamp.color_id == color.id %} selected {% endif %}>{{color.color}}</option>
+					{% endfor %}
+				</select>
+				{% if errors.color_id is defined %}
+					<span class="span-erreur">
+						{{errors.color_id}}</span>
+				{% endif %}
+			</section>
+			<section>
+				<h3>Mise à prix</h3>
+				<div>
+					<label for="minimum">Minimum</label>
+					<input type="number" name="minimum" id="minimum" placeholder="Mise minimum" class="input-selection variante-bleu">
+				</div>
+				<p>&</p>
+				<div>
+					<label for="maximum">Maximum</label>
+					<input type="number" name="maximum" id="maximum" placeholder="Mise maximum" class="input-selection variante-bleu">
+				</div>
+			</section>
+			<section>
+				<h3>Date d'émission</h3>
+				<div>
+					<label for="minimumDate">Date minimum</label>
+					<input type="date" name="minimumDate" id="minimumDate" placeholder="Date minimum" class="input-selection variante-bleu">
+				</div>
+				<p>&</p>
+				<div>
+					<label for="maximumDate">Date maximum</label>
+					<input type="date" name="maximumDate" id="maximumDate" placeholder="Date maximum" class="input-selection variante-bleu">
+				</div>
+			</section>
+			<input type="submit" value="Rechercher" class="bouton">
+			<input type="reset" value="Réinitialiser les filtres" class="bouton as-secondary-btn">
+		</form>
+	</aside>
+	{{ include('template/up-page.twig')}}
+</main>
+
+<aside id="panneau-confiance" class="plein-plan">
+	<h2>Pouquoi Stampee ?</h2>
+	<div>
+		<article>
+			<i class="fa-regular fa-star fa-2xl"></i>
+			<h3>Un choix qui vous ressemble</h3>
+			<p>Découvrez une sélection de timbres originaux jusqu'á certaines pièces rares, certifiés par nos
+																				                        exeperts.</p>
+		</article>
+		<article>
+			<i class="fa-solid fa-shield fa-2xl"></i>
+			<h3>Protection des acheteurs</h3>
+			<p>Nous assurons à tous les acheteurs d'utiliser des méthodes de paiement sécurisées, ainsi qu'une
+																				                        livraison
+																				                        en toute tranquilité.</p>
+		</article>
+		<article>
+			<i class="fa-regular fa-hand-spock fa-2xl"></i>
+			<h3>Service client dédié</h3>
+			<p>Notre équipe est disponible pour vous accompagner et répondre à toutes vos questions.</p>
+		</article>
+		<article>
+			<i class="fa-regular fa-comments fa-2xl"></i>
+			<h3>Des milliers de collectionneurs satisfaits</h3>
+			<p>Plus de 10 000 ventes réalisées avec succès. Une communauté de 2590 collectionneurs actifs nous
+																				                        fait
+																				                        confiance.</p>
+		</article>
+	</div>
+	<div>
+		<h3>Donc n'oublie pas de venir t'inscrire</h3>
+		<a href="#" class="bouton">Inscription</a>
+	</div>
+</aside>
+
+
+{{ include('layouts/footer.twig')}}

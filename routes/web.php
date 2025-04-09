@@ -24,6 +24,7 @@ Route::get('/auction/show', 'AuctionController@show');
 Route::get('/auction/filter', 'AuctionController@filter');
 
 Route::get('/auction/lord', 'AuctionController@indexLord');
+Route::get('/auction/lord/filter', 'AuctionController@filterLord');
 
 Route::get('/bid/store', 'BidController@store');
 Route::get('/bid/store/show', 'BidController@storeShow');

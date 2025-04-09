@@ -108,10 +108,6 @@ class AuctionController
             }
         }
 
-//         echo('<pre>');
-// print_r($auctions);
-// echo('</pre>');
-// die();
         $filterConditions = $objCondition->select();
         $filterCountry    = $objCountry->select();
         $filterColors     = $objColor->select();
@@ -260,5 +256,108 @@ class AuctionController
         $filterCountry    = $objCountry->select();
         $filterColors     = $objColor->select();
         return View::render('auction/catalogue', ['auctions' => $auctions, 'conditions' => $filterConditions, 'countries' => $filterCountry, 'colors' => $filterColors]);
+    }
+
+    public function indexLord()
+    {
+        $objAuction = new Auction;
+        $auctions   = $objAuction->selectAllById(1, "lordLike");
+
+        $objStamp        = new Stamp;
+        $objFileToUpload = new FileToUpload;
+        $objCondition    = new Conditions;
+        $objBid          = new Bid;
+        $objUser         = new User;
+        $objCountry      = new CountryOrigin;
+        $objColor        = new Color;
+        $objDate         = new Date;
+
+        foreach ($auctions as $auctionsIndex => $auction) {
+            $stampInfo                               = $objStamp->selectId($auction['stamp_id']);
+            $auctions[$auctionsIndex]['nameStamp']   = $stampInfo['name'];
+            $auctions[$auctionsIndex]['dateRelease'] = $stampInfo['dateRelease'];
+
+            $conditionInfo                         = $objCondition->selectId($stampInfo['conditions_id']);
+            $auctions[$auctionsIndex]['condition'] = $conditionInfo["state"];
+
+            $dateNow                              = $objDate->dateNow();
+            $timeLeft                             = $objDate->dateDiff($dateNow, $auction["dateFinish"]);
+            $auctions[$auctionsIndex]['timeLeft'] = $timeLeft;
+
+            $maxBid = $objBid->selectWhereIdMax("auction_id", $auction["id"], "bid");
+
+            if ($maxBid && ! empty($maxBid)) {
+                $auctions[$auctionsIndex]['maxBid']        = $maxBid["bid"];
+                $selectBidderName                          = $objUser->selectIdWhere("id", $maxBid["user_id"]);
+                $auctions[$auctionsIndex]['maxBidderName'] = $selectBidderName["name"];
+            } else {
+                $auctions[$auctionsIndex]['maxBid']        = "Aucune mise";
+                $auctions[$auctionsIndex]['maxBidderName'] = "Aucun(e)";
+            }
+
+            $stampImages = $objFileToUpload->selectAllById($auction['stamp_id'], "stamp_id");
+
+            foreach ($stampImages as $stampImagesIndex => $image) {
+                if ($image["position"] == 0) {
+                    $auctions[$auctionsIndex]['fileName']        = $image['file'];
+                    $auctions[$auctionsIndex]['fileDescription'] = $image['description'];
+                }
+            }
+        }
+        
+        $filterConditions = $objCondition->select();
+        $filterCountry    = $objCountry->select();
+        $filterColors     = $objColor->select();
+        return View::render('auction/catalogueLord', ['auctions' => $auctions, 'conditions' => $filterConditions, 'countries' => $filterCountry, 'colors' => $filterColors]);
+    }
+
+    public function filterLord()
+    {
+
+        $objAuction = new Auction;
+        $auctions   = $objAuction->filterLord($_GET);
+
+        $objStamp        = new Stamp;
+        $objFileToUpload = new FileToUpload;
+        $objCondition    = new Conditions;
+        $objBid          = new Bid;
+        $objUser         = new User;
+        $objCountry      = new CountryOrigin;
+        $objColor        = new Color;
+        $objDate         = new Date;
+
+        foreach ($auctions as $auctionsIndex => $auction) {
+
+            $conditionInfo                         = $objCondition->selectId($auction['conditions_id']);
+            $auctions[$auctionsIndex]['condition'] = $conditionInfo["state"];
+            
+
+            $maxBid = $objBid->selectWhereIdMax("auction_id", $auction["id"], "bid");
+            if ($maxBid && ! empty($maxBid)) {
+                $auctions[$auctionsIndex]['maxBid']        = $maxBid["bid"];
+                $selectBidderName                          = $objUser->selectIdWhere("id", $maxBid["user_id"]);
+                $auctions[$auctionsIndex]['maxBidderName'] = $selectBidderName["name"];
+            } else {
+                $auctions[$auctionsIndex]['maxBid']        = "Aucune mise";
+                $auctions[$auctionsIndex]['maxBidderName'] = "Aucun(e)";
+            }
+
+            $dateNow                              = $objDate->dateNow();
+            $timeLeft                             = $objDate->dateDiff($dateNow, $auction["dateFinish"]);
+            $auctions[$auctionsIndex]['timeLeft'] = $timeLeft;
+
+            $stampImages = $objFileToUpload->selectAllById($auction['stamp_id'], "stamp_id");
+
+            foreach ($stampImages as $stampImagesIndex => $image) {
+                if ($image["position"] == 0) {
+                    $auctions[$auctionsIndex]['fileName']        = $image['file'];
+                    $auctions[$auctionsIndex]['fileDescription'] = $image['description'];
+                }
+            }
+        }
+        $filterConditions = $objCondition->select();
+        $filterCountry    = $objCountry->select();
+        $filterColors     = $objColor->select();
+        return View::render('auction/catalogueLord', ['auctions' => $auctions, 'conditions' => $filterConditions, 'countries' => $filterCountry, 'colors' => $filterColors]);
     }
 }
