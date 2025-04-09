@@ -69,7 +69,7 @@
 					<div>
 						<form action="{{base}}/bid/store/show">
 							<input type="hidden" name="id" value="{{auction.id}}">
-							<input type="text" name="bid" min="{% if auction.maxBid == "Aucune mise" %}{{auction.startPrice + 1 }}{% else %}{{auction.maxBid + 1}}{% endif %}" value="{% if auction.maxBid == "Aucune mise" %}{{auction.startPrice + 1 }}{% else %}{{auction.maxBid + 1}}{% endif %}" class="input-selection variante-bleu" placeholder="Entrez une mise" aria-label="Entrez une mise pour l'action">
+							<input type="number" name="bid" min="{% if auction.maxBid == "Aucune mise" %}{{auction.startPrice + 1 }}{% else %}{{auction.maxBid + 1}}{% endif %}" value="{% if auction.maxBid == "Aucune mise" %}{{auction.startPrice + 1 }}{% else %}{{auction.maxBid + 1}}{% endif %}" class="input-selection variante-bleu" placeholder="Entrez une mise" aria-label="Entrez une mise pour l'action">
 							<input type="submit" value="Placer l'enchère" class="bouton">
 						</form>
 						{% if errors.bid is defined %}
