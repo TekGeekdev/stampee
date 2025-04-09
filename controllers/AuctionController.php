@@ -15,8 +15,44 @@ class AuctionController
 {
 
     public function home()
-    {
-        return View::render('auction/home');
+    {   
+        $objAuction = new Auction;
+        $objStamp        = new Stamp;
+        $objFileToUpload = new FileToUpload;
+        $objCondition    = new Conditions;
+        $objBid          = new Bid;
+        $objUser         = new User;
+
+        $bannerAuctions = $objAuction->selectByLimit("dateStart", 4 ,"DESC");
+        foreach ($bannerAuctions as $auctionsIndex => $auction) {
+            $stampInfo                               = $objStamp->selectId($auction['stamp_id']);
+            $bannerAuctions[$auctionsIndex]['nameStamp']   = $stampInfo['name'];
+            $bannerAuctions[$auctionsIndex]['dateRelease'] = $stampInfo['dateRelease'];
+
+            $conditionInfo                         = $objCondition->selectId($stampInfo['conditions_id']);
+            $bannerAuctions[$auctionsIndex]['condition'] = $conditionInfo["state"];
+
+            $maxBid = $objBid->selectWhereIdMax("auction_id", $auction["id"], "bid");
+            if ($maxBid && ! empty($maxBid)) {
+                $bannerAuctions[$auctionsIndex]['maxBid']        = $maxBid["bid"];
+                $selectBidderName                          = $objUser->selectIdWhere("id", $maxBid["user_id"]);
+                $bannerAuctions[$auctionsIndex]['maxBidderName'] = $selectBidderName["name"];
+            } else {
+                $bannerAuctions[$auctionsIndex]['maxBid']        = "Aucune mise";
+                $bannerAuctions[$auctionsIndex]['maxBidderName'] = "Aucun(e)";
+            }
+
+            $stampImages = $objFileToUpload->selectAllById($auction['stamp_id'], "stamp_id");
+
+            foreach ($stampImages as $stampImagesIndex => $image) {
+                if ($image["position"] == 0) {
+                    $bannerAuctions[$auctionsIndex]['fileName']        = $image['file'];
+                    $bannerAuctions[$auctionsIndex]['fileDescription'] = $image['description'];
+                }
+            }
+        }
+
+        return View::render('auction/home', ["bannerAuctions" => $bannerAuctions]);
     }
 
     public function index()
@@ -26,7 +62,7 @@ class AuctionController
 
         $objStamp        = new Stamp;
         $objFileToUpload = new FileToUpload;
-        $obtCondition    = new Conditions;
+        $objCondition    = new Conditions;
         $objBid          = new Bid;
         $objUser         = new User;
 
@@ -35,7 +71,7 @@ class AuctionController
             $auctions[$auctionsIndex]['nameStamp']   = $stampInfo['name'];
             $auctions[$auctionsIndex]['dateRelease'] = $stampInfo['dateRelease'];
 
-            $conditionInfo                         = $obtCondition->selectId($stampInfo['conditions_id']);
+            $conditionInfo                         = $objCondition->selectId($stampInfo['conditions_id']);
             $auctions[$auctionsIndex]['condition'] = $conditionInfo["state"];
 
             $maxBid = $objBid->selectWhereIdMax("auction_id", $auction["id"], "bid");
@@ -102,6 +138,35 @@ class AuctionController
 
         $stampImages = $objFileToUpload->selectAllById($stampInfo["id"], "stamp_id", "position");
 
-        return View::render('auction/show', ["images" => $stampImages, "auction" => $auction, "stampInfo" => $stampInfo]);
+        $bannerAuctions = $objAuction->selectByLimit("dateStart", 4 ,"DESC");
+        foreach ($bannerAuctions as $auctionsIndex => $auction) {
+            $stampInfo                               = $objStamp->selectId($auction['stamp_id']);
+            $bannerAuctions[$auctionsIndex]['nameStamp']   = $stampInfo['name'];
+            $bannerAuctions[$auctionsIndex]['dateRelease'] = $stampInfo['dateRelease'];
+
+            $conditionInfo                         = $objCondition->selectId($stampInfo['conditions_id']);
+            $bannerAuctions[$auctionsIndex]['condition'] = $conditionInfo["state"];
+
+            $maxBid = $objBid->selectWhereIdMax("auction_id", $auction["id"], "bid");
+            if ($maxBid && ! empty($maxBid)) {
+                $bannerAuctions[$auctionsIndex]['maxBid']        = $maxBid["bid"];
+                $selectBidderName                          = $objUser->selectIdWhere("id", $maxBid["user_id"]);
+                $bannerAuctions[$auctionsIndex]['maxBidderName'] = $selectBidderName["name"];
+            } else {
+                $bannerAuctions[$auctionsIndex]['maxBid']        = "Aucune mise";
+                $bannerAuctions[$auctionsIndex]['maxBidderName'] = "Aucun(e)";
+            }
+
+            $stampImages = $objFileToUpload->selectAllById($auction['stamp_id'], "stamp_id");
+
+            foreach ($stampImages as $stampImagesIndex => $image) {
+                if ($image["position"] == 0) {
+                    $bannerAuctions[$auctionsIndex]['fileName']        = $image['file'];
+                    $bannerAuctions[$auctionsIndex]['fileDescription'] = $image['description'];
+                }
+            }
+        }
+
+        return View::render('auction/show', ["images" => $stampImages, "auction" => $auction, "stampInfo" => $stampInfo, "bannerAuctions" => $bannerAuctions]);
     }
 }

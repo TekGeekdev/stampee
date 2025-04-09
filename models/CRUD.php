@@ -18,6 +18,16 @@ abstract class CRUD extends \PDO
         return $stmt->fetchAll();
     }
 
+    final public function selectByLimit($field = null, $limit = 4, $order = 'ASC')
+    {
+        if ($field === null) {
+            $field = $this->primaryKey;
+        }
+        $sql  = "SELECT * FROM $this->table ORDER BY $field $order LIMIT $limit";
+        $stmt = $this->query($sql);
+        return $stmt->fetchAll();
+    }
+
     final public function selectId($value)
     {
         $sql  = "SELECT * FROM $this->table WHERE $this->primaryKey = :$this->primaryKey";
