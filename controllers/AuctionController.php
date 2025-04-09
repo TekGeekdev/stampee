@@ -52,7 +52,7 @@ class AuctionController
             }
         }
 
-        return View::render('auction/home', ["bannerAuctions" => $bannerAuctions]);
+        return View::render('auction/home', ["bannerAuctions" => $bannerAuctions, ]);
     }
 
     public function index()
@@ -65,6 +65,8 @@ class AuctionController
         $objCondition    = new Conditions;
         $objBid          = new Bid;
         $objUser         = new User;
+        $objCountry       = new CountryOrigin;
+        $objColor        = new Color;
 
         foreach ($auctions as $auctionsIndex => $auction) {
             $stampInfo                               = $objStamp->selectId($auction['stamp_id']);
@@ -93,7 +95,10 @@ class AuctionController
                 }
             }
         }
-        return View::render('auction/catalogue', ['auctions' => $auctions]);
+        $filterConditions = $objCondition->select();
+        $filterCountry = $objCountry->select();
+        $filterColors = $objColor->select();
+        return View::render('auction/catalogue', ['auctions' => $auctions,'conditions' => $filterConditions, 'countries' => $filterCountry, 'colors' => $filterColors]);
     }
 
     public function show()

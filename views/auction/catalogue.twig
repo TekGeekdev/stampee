@@ -115,49 +115,29 @@
 		</div>
 	</section>
 	<aside class="filtres">
-		<form action="index.html">
+		<form action="{{base}}/auction/filter">
 			<h2>Filtres</h2>
-			<section class="filtres-vertical tiroir-vertical">
-				<details>
-					<summary>
-						<h3>État des timbres</h3>
-						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-							<path stroke-linecap="round" stroke-linejoin="round" d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5"/>
-						</svg>
-					</summary>
-					<div>
-						<label for="inutilise">Inutilisé</label>
-						<input type="radio" name="etat-timbre" id="inutilise">
-					</div>
-					<div>
-						<label for="utilise">Utilisé</label>
-						<input type="radio" name="etat-timbre" id="utilise">
-					</div>
-					<div>
-						<label for="oblitere">Oblitéré</label>
-						<input type="radio" name="etat-timbre" id="oblitere">
-					</div>
-					<div>
-						<label for="sans-gomme">Sans gomme</label>
-						<input type="radio" name="etat-timbre" id="sans-gomme">
-					</div>
-					<div>
-						<label for="deteriore">Détérioré</label>
-						<input type="radio" name="etat-timbre" id="deteriore">
-					</div>
-					<div>
-						<label for="repare">Réparé</label>
-						<input type="radio" name="etat-timbre" id="repare">
-					</div>
-					<div>
-						<label for="tache">Taché</label>
-						<input type="radio" name="etat-timbre" id="tache">
-					</div>
-					<div>
-						<label for="mal-centre">Mal centré</label>
-						<input type="radio" name="etat-timbre" id="mal-centre">
-					</div>
-				</details>
+			<section class="select-a-droite">
+				<label for="conditions_id"><h3>État/Qualité</h3></label>
+				<select name="conditions_id" id="conditions_id" class="input-selection variante-bleu">
+					<option value="disabled" {% if stamp.conditions_id == null %} selected {% endif %} disabled>Choisir un état</option>
+					{% for condition in conditions %}
+						<option value="{{condition.id}}" {% if stamp.conditions_id == condition.id %} selected {% endif %}>{{condition.state}}</option>
+					{% endfor %}
+				</select>
+			</section>
+			<section class="select-a-droite">
+					<label for="countryOrigin_id"><h3>Pays d'émission</h3></label>
+					<select name="countryOrigin_id" id="countryOrigin_id" class="input-selection variante-bleu">
+						<option value="disabled" {% if stamp.countryOrigin_id == null %} selected {% endif %} disabled>Choisir un pays</option>
+						{% for country in countries %}
+							<option value="{{country.id}}" {% if stamp.countryOrigin_id == country.id %} selected {% endif %}>{{country.country}}</option>
+						{% endfor %}
+					</select>
+					{% if errors.countryOrigin_id is defined %}
+						<span class="span-erreur">
+							{{errors.countryOrigin_id}}</span>
+					{% endif %}
 			</section>
 			<section>
 				<h3>Mise à prix</h3>
@@ -169,56 +149,6 @@
 				<div>
 					<label for="maximum">Maximum</label>
 					<input type="number" name="maximum" id="maximum" placeholder="Mise maximum" class="input-selection variante-bleu">
-				</div>
-			</section>
-			<section class="select-a-droite">
-				<h3>Pays d'édition</h3>
-				<select name="pays-edition" class="input-selection variante-bleu" aria-label="filtre pays édition">
-					<option value="" selected disabled>Sélectionner un pays</option>
-					<option value="US">États-Unis</option>
-					<option value="france">France</option>
-					<option value="allemagne">Allemagne</option>
-					<option value="suisse">Suisse</option>
-					<option value="chine">Chine</option>
-					<option value="japon">Japon</option>
-					<option value="canada">Canada</option>
-					<option value="italie">Italie</option>
-					<option value="russie">Russie</option>
-				</select>
-			</section>
-			<section class="filtres-vertical">
-				<h3>Rareté</h3>
-				<div>
-					<label for="ordinaire">Ordinaire</label>
-					<input type="checkbox" name="ordinaire" id="ordinaire">
-				</div>
-				<div>
-					<label for="rarete">Rareté</label>
-					<input type="checkbox" name="rarete" id="rarete">
-				</div>
-				<div>
-					<label for="faux">Faux ou imitation</label>
-					<input type="checkbox" name="faux" id="faux">
-				</div>
-				<div>
-					<label for="variant-erreur">Variante ou erreur</label>
-					<input type="checkbox" name="variant-erreur" id="variant-erreur">
-				</div>
-				<div>
-					<label for="essai">Essai</label>
-					<input type="checkbox" name="essai" id="essai">
-				</div>
-				<div>
-					<label for="particularite">Particularité</label>
-					<input type="checkbox" name="particularite" id="particularite">
-				</div>
-				<div>
-					<label for="collection">Dans une collection</label>
-					<input type="checkbox" name="collection" id="collection">
-				</div>
-				<div>
-					<label for="isole">Isolé</label>
-					<input type="checkbox" name="isole" id="isole">
 				</div>
 			</section>
 			<input type="submit" value="Rechercher" class="bouton">
@@ -235,14 +165,14 @@
 			<i class="fa-regular fa-star fa-2xl"></i>
 			<h3>Un choix qui vous ressemble</h3>
 			<p>Découvrez une sélection de timbres originaux jusqu'á certaines pièces rares, certifiés par nos
-												                        exeperts.</p>
+																                        exeperts.</p>
 		</article>
 		<article>
 			<i class="fa-solid fa-shield fa-2xl"></i>
 			<h3>Protection des acheteurs</h3>
 			<p>Nous assurons à tous les acheteurs d'utiliser des méthodes de paiement sécurisées, ainsi qu'une
-												                        livraison
-												                        en toute tranquilité.</p>
+																                        livraison
+																                        en toute tranquilité.</p>
 		</article>
 		<article>
 			<i class="fa-regular fa-hand-spock fa-2xl"></i>
@@ -253,8 +183,8 @@
 			<i class="fa-regular fa-comments fa-2xl"></i>
 			<h3>Des milliers de collectionneurs satisfaits</h3>
 			<p>Plus de 10 000 ventes réalisées avec succès. Une communauté de 2590 collectionneurs actifs nous
-												                        fait
-												                        confiance.</p>
+																                        fait
+																                        confiance.</p>
 		</article>
 	</div>
 	<div>
