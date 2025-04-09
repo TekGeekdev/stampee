@@ -23,6 +23,7 @@ class AuctionController
         $objCondition    = new Conditions;
         $objBid          = new Bid;
         $objUser         = new User;
+        $objDate         = new Date;
 
         $bannerAuctions = $objAuction->selectByLimit("dateStart", 4, "DESC");
         foreach ($bannerAuctions as $auctionsIndex => $auction) {
@@ -42,6 +43,10 @@ class AuctionController
                 $bannerAuctions[$auctionsIndex]['maxBid']        = "Aucune mise";
                 $bannerAuctions[$auctionsIndex]['maxBidderName'] = "Aucun(e)";
             }
+
+            $dateNow                              = $objDate->dateNow();
+            $timeLeft                             = $objDate->dateDiff($dateNow, $auction["dateFinish"]);
+            $bannerAuctions[$auctionsIndex]['timeLeft'] = $timeLeft;
 
             $stampImages = $objFileToUpload->selectAllById($auction['stamp_id'], "stamp_id");
 
@@ -126,6 +131,7 @@ class AuctionController
         $objColor        = new Color;
         $objUser         = new User;
         $objBid          = new Bid;
+        $objDate         = new Date;
 
         $auction = $objAuction->selectId($idAuction);
 
@@ -156,6 +162,10 @@ class AuctionController
         $conditionState              = $objCondition->selectId($stampInfo["conditions_id"]);
         $stampInfo["conditionState"] = $conditionState["state"];
 
+        $dateNowAuction                              = $objDate->dateNow();
+        $timeLeftAuction                         = $objDate->dateDiff($dateNowAuction, $auction["dateFinish"]);
+        $auction['timeLeft'] = $timeLeftAuction;
+
         $stampImageInfo = $objFileToUpload->selectAllById($stampInfo["id"], "stamp_id", "position");
 
         $bannerAuctions = $objAuction->selectByLimit("dateStart", 4, "DESC");
@@ -176,6 +186,10 @@ class AuctionController
                 $bannerAuctions[$auctionsIndex]['maxBid']        = "Aucune mise";
                 $bannerAuctions[$auctionsIndex]['maxBidderName'] = "Aucun(e)";
             }
+
+            $dateNowBanner                              = $objDate->dateNow();
+            $timeLeftBanner                            = $objDate->dateDiff($dateNowBanner, $bannerAuction["dateFinish"]);
+            $bannerAuctions[$auctionsIndex]['timeLeft'] = $timeLeftBanner;
 
             $stampImages = $objFileToUpload->selectAllById($bannerAuction['stamp_id'], "stamp_id");
 
@@ -208,6 +222,7 @@ class AuctionController
         $objUser         = new User;
         $objCountry      = new CountryOrigin;
         $objColor        = new Color;
+        $objDate         = new Date;
 
         foreach ($auctions as $auctionsIndex => $auction) {
 
@@ -227,6 +242,10 @@ class AuctionController
                 $auctions[$auctionsIndex]['maxBid']        = "Aucune mise";
                 $auctions[$auctionsIndex]['maxBidderName'] = "Aucun(e)";
             }
+
+            $dateNow                              = $objDate->dateNow();
+            $timeLeft                             = $objDate->dateDiff($dateNow, $auction["dateFinish"]);
+            $auctions[$auctionsIndex]['timeLeft'] = $timeLeft;
 
             $stampImages = $objFileToUpload->selectAllById($auction['stamp_id'], "stamp_id");
 
