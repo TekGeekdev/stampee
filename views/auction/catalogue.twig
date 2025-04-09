@@ -31,6 +31,10 @@
 			</div>
 		</header>
 		<div class="cartes">
+		{% if auctions is empty %}
+		<span>Aucun résultats concernant votre recherche.</span>
+		{% endif %}
+		
 			{% for auction in auctions %}
 				<article class="carte zoomEffet ombre-boite">
 					<div class="carte-img-with-stampee">
@@ -91,7 +95,7 @@
 									<b>Temps restant :</b>
 								</p>
 								<p class="texte-vert">
-									<b>3 jours 21 heures</b>
+									<b>{{auction.timeLeft}}</b>
 								</p>
 							</div>
 						</div>
