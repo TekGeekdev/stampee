@@ -26,8 +26,13 @@ Route::get('/auction/filter', 'AuctionController@filter');
 Route::get('/auction/lord', 'AuctionController@indexLord');
 Route::get('/auction/lord/filter', 'AuctionController@filterLord');
 
-Route::get('/bid/store', 'BidController@store');
-Route::get('/bid/store/show', 'BidController@storeShow');
+Route::get('/auction/archive', 'AuctionController@indexArchive');
+Route::get('/auction/archive/filter', 'AuctionController@filterArchive');
+
+Route::post('/bid/store', 'BidController@store');
+Route::post('/bid/store/show', 'BidController@storeShow');
+
+Route::post('/bid/store/lord', 'BidController@storeLord');
 
 Route::get('/login', 'AuthController@login');
 Route::post('/login', 'AuthController@store');

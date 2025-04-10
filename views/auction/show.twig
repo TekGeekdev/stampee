@@ -56,26 +56,40 @@
 								{{auction.startPrice}}
 								$</b>
 						</p>
-						<p>Temps restant : <b class="texte-vert">{{auction.timeLeft}}</b></p>
+						{% if auction.state_id == 1 %}
+							<p>Temps restant :
+								<b class="texte-vert">{{auction.timeLeft}}</b>
+							</p>
+						{% endif %}
+						{% if auction.state_id == 2 %}
+							<p>Temps restant :
+								<b class="texte-rouge">Enchère expirée</b>
+							</p>
+						{% endif %}
 						<p>
-							<b>Mise actuelle : {{auction.maxBid}}
-										{% if auction.maxBid != "Aucune mise" %}$
-										{% endif %}</b>
+							<b>Mise actuelle :
+								{{auction.maxBid}}
+								{% if auction.maxBid != "Aucune mise" %}$
+								{% endif %}
+							</b>
 						</p>
-						<p>Enchérisseur : {{auction.maxBidderName}}</p>				
+						<p>Enchérisseur :
+							{{auction.maxBidderName}}</p>
 						<p>Frais de livraison : 2 $ (France), 5 $ (international)</p>
 						<p>Assurance : Oui (optionnelle)</p>
 					</div>
 					<div>
-						<form action="{{base}}/bid/store/show">
-							<input type="hidden" name="id" value="{{auction.id}}">
-							<input type="number" name="bid" min="{% if auction.maxBid == "Aucune mise" %}{{auction.startPrice + 1 }}{% else %}{{auction.maxBid + 1}}{% endif %}" value="{% if auction.maxBid == "Aucune mise" %}{{auction.startPrice + 1 }}{% else %}{{auction.maxBid + 1}}{% endif %}" class="input-selection variante-bleu" placeholder="Entrez une mise" aria-label="Entrez une mise pour l'action">
-							<input type="submit" value="Placer l'enchère" class="bouton">
-						</form>
+						{% if auction.state_id == 1 %}
+							<form action="{{base}}/bid/store/show" method="POST">
+								<input type="hidden" name="id" value="{{auction.id}}">
+								<input type="number" name="bid" min="{% if auction.maxBid == "Aucune mise" %}{{auction.startPrice + 1 }}{% else %}{{auction.maxBid + 1}}{% endif %}" value="{% if auction.maxBid == "Aucune mise" %}{{auction.startPrice + 1 }}{% else %}{{auction.maxBid + 1}}{% endif %}" class="input-selection variante-bleu" placeholder="Entrez une mise" aria-label="Entrez une mise pour l'action">
+								<input type="submit" value="Placer l'enchère" class="bouton">
+							</form>
+						{% endif %}
 						{% if errors.bid is defined %}
-								<span class="span-erreur">
-									{{errors.bid}}</span>
-							{% endif %}
+							<span class="span-erreur">
+								{{errors.bid}}</span>
+						{% endif %}
 						<div>
 							<p>Paiement par :</p>
 							<div class="img-ligne-petites">
@@ -149,7 +163,7 @@
 			{% for image in images %}
 				{% if image.position == 0 %}
 					<div class="img-magnifier-container">
-					<img id="bigImgShow" src="{{uploads}}{{image.file}}" alt="{{image.description}}" >
+						<img id="bigImgShow" src="{{uploads}}{{image.file}}" alt="{{image.description}}">
 					</div>
 				{% endif %}
 			{% endfor %}
@@ -271,14 +285,14 @@
 				<i class="fa-regular fa-star fa-2xl"></i>
 				<h3>Un choix qui vous ressemble</h3>
 				<p>Découvrez une sélection de timbres originaux jusqu'á certaines pièces rares, certifiés par nos
-										                            exeperts.</p>
+															                            exeperts.</p>
 			</article>
 			<article>
 				<i class="fa-solid fa-shield fa-2xl"></i>
 				<h3>Protection des acheteurs</h3>
 				<p>Nous assurons à tous les acheteurs d'utiliser des méthodes de paiement sécurisées, ainsi qu'une
-										                            livraison
-										                            en toute tranquilité.</p>
+															                            livraison
+															                            en toute tranquilité.</p>
 			</article>
 			<article>
 				<i class="fa-regular fa-hand-spock fa-2xl"></i>
@@ -289,8 +303,8 @@
 				<i class="fa-regular fa-comments fa-2xl"></i>
 				<h3>Des milliers de collectionneurs satisfaits</h3>
 				<p>Plus de 10 000 ventes réalisées avec succès. Une communauté de 2590 collectionneurs actifs nous
-										                            fait
-										                            confiance.</p>
+															                            fait
+															                            confiance.</p>
 			</article>
 		</div>
 	</aside>

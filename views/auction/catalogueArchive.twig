@@ -31,10 +31,10 @@
 			</div>
 		</header>
 		<div class="cartes">
-			{% if auctions is empty %}
-				<span>Aucun résultats concernant votre recherche.</span>
-			{% endif %}
-
+		{% if auctions is empty %}
+		<span>Aucun résultats concernant votre recherche.</span>
+		{% endif %}
+		
 			{% for auction in auctions %}
 				<article class="carte zoomEffet ombre-boite">
 					<div class="carte-img-with-stampee">
@@ -95,14 +95,14 @@
 									<b>Temps restant :</b>
 								</p>
 								{% if auction.state_id == 1 %}<p class="texte-vert"><b>{{auction.timeLeft}}</b></p>{% endif %}
-								{% if auction.state_id == 2 %}<p class="texte-rouge"><b>Enchère expirée</b></p>{% endif %}	
+								{% if auction.state_id == 2 %}<p class="texte-rouge"><b>Enchère expirée</b></p>{% endif %}			
 							</div>
 						</div>
 						{% if auction.state_id == 1 %}
-						<form action="{{base}}/bid/store/lord" class="mise" method="POST">
+						<form action="{{base}}/bid/store" method="POST" class="mise">
 							<input type="hidden" name="id" value="{{auction.id}}">
 							<input type="number" name="bid" min="{% if auction.maxBid == "Aucune mise" %}{{auction.startPrice + 1 }}{% else %}{{auction.maxBid + 1}}{% endif %}" value="{% if auction.maxBid == "Aucune mise" %}{{auction.startPrice + 1 }}{% else %}{{auction.maxBid + 1}}{% endif %}" class="input-selection variante-bleu" placeholder="Entrez une mise" aria-label="Entrez une mise pour l'action">
-							<input type="submit" value="Miser" class="bouton" {% if auction.state_id == 2 %}disabled{% endif %}>
+							<input type="submit" value="Miser" class="bouton">
 						</form>
 						{% endif %}
 						{% if auction.id == bidData.id %}
@@ -120,12 +120,10 @@
 		</div>
 	</section>
 	<aside class="filtres">
-		<form action="{{base}}/auction/lord/filter">
+		<form action="{{base}}/auction/archive/filter">
 			<h2>Filtres</h2>
 			<section class="select-a-droite">
-				<label for="conditions_id">
-					<h3>État/Qualité</h3>
-				</label>
+				<label for="conditions_id"><h3>État/Qualité</h3></label>
 				<select name="conditions_id" id="conditions_id" class="input-selection variante-bleu">
 					<option value="disabled" {% if stamp.conditions_id == null %} selected {% endif %} disabled>Choisir un état</option>
 					{% for condition in conditions %}
@@ -134,24 +132,20 @@
 				</select>
 			</section>
 			<section class="select-a-droite">
-				<label for="countryOrigin_id">
-					<h3>Pays d'émission</h3>
-				</label>
-				<select name="countryOrigin_id" id="countryOrigin_id" class="input-selection variante-bleu">
-					<option value="disabled" {% if stamp.countryOrigin_id == null %} selected {% endif %} disabled>Choisir un pays</option>
-					{% for country in countries %}
-						<option value="{{country.id}}" {% if stamp.countryOrigin_id == country.id %} selected {% endif %}>{{country.country}}</option>
-					{% endfor %}
-				</select>
-				{% if errors.countryOrigin_id is defined %}
-					<span class="span-erreur">
-						{{errors.countryOrigin_id}}</span>
-				{% endif %}
+					<label for="countryOrigin_id"><h3>Pays d'émission</h3></label>
+					<select name="countryOrigin_id" id="countryOrigin_id" class="input-selection variante-bleu">
+						<option value="disabled" {% if stamp.countryOrigin_id == null %} selected {% endif %} disabled>Choisir un pays</option>
+						{% for country in countries %}
+							<option value="{{country.id}}" {% if stamp.countryOrigin_id == country.id %} selected {% endif %}>{{country.country}}</option>
+						{% endfor %}
+					</select>
+					{% if errors.countryOrigin_id is defined %}
+						<span class="span-erreur">
+							{{errors.countryOrigin_id}}</span>
+					{% endif %}
 			</section>
 			<section class="select-a-droite">
-				<label for="color_id">
-					<h3>Couleur dominante</h3>
-				</label>
+				<label for="color_id"><h3>Couleur dominante</h3></label>
 				<select name="color_id" id="color_id" class="input-selection variante-bleu">
 					<option value="disabled" {% if stamp.color_id == null %} selected {% endif %} disabled>Choisir une couleur</option>
 					{% for color in colors %}
@@ -201,14 +195,14 @@
 			<i class="fa-regular fa-star fa-2xl"></i>
 			<h3>Un choix qui vous ressemble</h3>
 			<p>Découvrez une sélection de timbres originaux jusqu'á certaines pièces rares, certifiés par nos
-																				                        exeperts.</p>
+																                        exeperts.</p>
 		</article>
 		<article>
 			<i class="fa-solid fa-shield fa-2xl"></i>
 			<h3>Protection des acheteurs</h3>
 			<p>Nous assurons à tous les acheteurs d'utiliser des méthodes de paiement sécurisées, ainsi qu'une
-																				                        livraison
-																				                        en toute tranquilité.</p>
+																                        livraison
+																                        en toute tranquilité.</p>
 		</article>
 		<article>
 			<i class="fa-regular fa-hand-spock fa-2xl"></i>
@@ -219,8 +213,8 @@
 			<i class="fa-regular fa-comments fa-2xl"></i>
 			<h3>Des milliers de collectionneurs satisfaits</h3>
 			<p>Plus de 10 000 ventes réalisées avec succès. Une communauté de 2590 collectionneurs actifs nous
-																				                        fait
-																				                        confiance.</p>
+																                        fait
+																                        confiance.</p>
 		</article>
 	</div>
 	<div>

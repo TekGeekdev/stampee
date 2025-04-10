@@ -94,16 +94,17 @@
 								<p class="timbre-temps-restant">
 									<b>Temps restant :</b>
 								</p>
-								<p class="texte-vert">
-									<b>{{auction.timeLeft}}</b>
-								</p>
+								{% if auction.state_id == 1 %}<p class="texte-vert"><b>{{auction.timeLeft}}</b></p>{% endif %}
+								{% if auction.state_id == 2 %}<p class="texte-rouge"><b>Enchère expirée</b></p>{% endif %}			
 							</div>
 						</div>
-						<form action="{{base}}/bid/store" class="mise">
+						{% if auction.state_id == 1 %}
+						<form action="{{base}}/bid/store" method="POST" class="mise">
 							<input type="hidden" name="id" value="{{auction.id}}">
 							<input type="number" name="bid" min="{% if auction.maxBid == "Aucune mise" %}{{auction.startPrice + 1 }}{% else %}{{auction.maxBid + 1}}{% endif %}" value="{% if auction.maxBid == "Aucune mise" %}{{auction.startPrice + 1 }}{% else %}{{auction.maxBid + 1}}{% endif %}" class="input-selection variante-bleu" placeholder="Entrez une mise" aria-label="Entrez une mise pour l'action">
 							<input type="submit" value="Miser" class="bouton">
 						</form>
+						{% endif %}
 						{% if auction.id == bidData.id %}
 							{% if errors.bid is defined %}
 								<span class="span-erreur">
