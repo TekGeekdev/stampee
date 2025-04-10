@@ -29,7 +29,7 @@
 							<td>{{stamp.draw}}</td>
 							<td>{{stamp.width}}</td>
 							<td>{{stamp.height}}</td>
-							<td>{{stamp.certified}}</td>
+							<td>{% if stamp.certified == 1 %}Oui{% else %}Non{% endif %}</td>
 							<td>{{stamp.color_id}}</td>
 							<td>{{stamp.countryOrigin_id}}</td>
 							<td>{{stamp.conditions_id}}</td>

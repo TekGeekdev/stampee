@@ -244,8 +244,7 @@ class StampController
                 $updateStamp     = $stamp->update($data, $idStamp);
 
                 if ($updateStamp) {
-                    echo("update ok");
-                    die();
+              
                     $_SESSION['stampId'] = $insertStamp;
                     return view::redirect('stamp/create-img');
                 } else {

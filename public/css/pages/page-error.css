@@ -1,0 +1,12 @@
+.page-error{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+
+    & h1{
+        position: absolute;
+        text-decoration: rgb(187, 152, 103) wavy underline;
+        color: var(--couleur-annulation)
+    }
+}

@@ -32,6 +32,8 @@
 @import url("components/table.css");
 @import url("components/img-magnifier-container.css");
 
+
 /* page */ 
 @import url("pages/error.css");
 @import url("pages/userAccount.css");
+@import url("pages/page-error.css");
